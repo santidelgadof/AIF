@@ -23,10 +23,29 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if path:
-        print("Camino encontrado:\n")
-        for state, g, d, op in path:
-            print(f"(d={d}, g={g}, op={op}, S={state})")
-        print("\nExplorados:", explored) # TODO debe mostrar la lista creo
-        print("Frontera:", frontier) # TODO debe mostrar la lista creo
+        # Formato según la especificación de la práctica (Sección 4.2)
+        # Node 0 (starting node)
+        # Operator 1
+        # Node 1
+        # ...
+        
+        # Primer nodo (inicial)
+        state0, g0, d0, op0 = path[0]
+        if verbose:
+            print("\n\n-------------------------------------------------\n\n")
+        print(f"\nNode 0 (starting node)")
+        print(f"  ({d0}, {g0}, {op0}, {state0})")
+        
+        # Resto de nodos con sus operadores
+        for i in range(1, len(path)):
+            state, g, d, op = path[i]
+            print(f"\nOperator {i}")
+            print(f"  {op}")
+            print(f"Node {i}")
+            print(f"  ({d}, {g}, {op}, {state})")
+        
+        # Estadísticas finales
+        print(f"\nTotal number of items in explored list: {len(explored)}")
+        print(f"Total number of items in frontier: {len(frontier)}")
     else:
         print("No se encontró solución")

@@ -20,7 +20,8 @@ def bfs(start, goal, matrix, verbose: bool = False):
     if is_goal(start, goal):
         if verbose:
             print(f"GOAL (inicio) alcanzado: {start} | coste=0 | profundidad=0")
-        return start_node.path(), 0, 0
+        
+        return start_node.path(), [start], []
 
     frontier = deque([start_node]) # cola para nodos por explorar
     frontier_set = {start} # estados en la frontera para evitar duplicados
@@ -55,27 +56,15 @@ def bfs(start, goal, matrix, verbose: bool = False):
         if state_right not in explored and state_right not in frontier_set:
             child = Node(state_right, node, "rotate_right", node.g + 1, node.depth + 1)
             
-            if is_goal(child.state, goal):
-                if verbose:
-                    print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
-
-                # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                goal_visited = False
-                while goal_visited is False and frontier:
-                    n = frontier.popleft()
-                    explored.append(n.state)
-                    if is_goal(n.state, goal):
-                        goal_visited = True
-                        break
-                print(f"Nodos visitados:")
-                for e in explored:
-                    print(f"  {e}")
-
-                return child.path(), len(explored), len(frontier) # TODO al hacer pop en frontier los borro
-            
             frontier.append(child)
             frontier_set.add(state_right)
             generated.append((child.op, child.state))
+
+            if is_goal(child.state, goal):
+                if verbose:
+                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
+
+                return child.path(), explored, [n.state for n in frontier]
 
         # 2. Mover
         dx, dy = MOVES[o]
@@ -85,56 +74,34 @@ def bfs(start, goal, matrix, verbose: bool = False):
             if move_state not in explored and move_state not in frontier_set:
                 move_cost = matrix[nx][ny]
                 child = Node(move_state, node, "move", node.g + move_cost, node.depth + 1)
-                
-                if is_goal(child.state, goal):
-                    if verbose:
-                        print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
-                    
-                    # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                    goal_visited = False
-                    while goal_visited is False and frontier:
-                        n = frontier.popleft()
-                        explored.append(n.state)
-                        if is_goal(n.state, goal):
-                            goal_visited = True
-                            break
-                    print(f"Nodos visitados:")
-                    for e in explored:
-                        print(f"  {e}")
-
-                    return child.path(), len(explored), len(frontier) # TODO al hacer pop en frontier los borro
-                
+                                
                 frontier.append(child)
                 frontier_set.add(move_state)
                 generated.append((child.op, child.state))
+
+                if is_goal(child.state, goal):
+                    if verbose:
+                        print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
+
+                    return child.path(), explored, [n.state for n in frontier]
+
 
         # 3. Girar izquierda
         o_left = (o - 1) % 8
         state_left = State(x, y, o_left)
         if state_left not in explored and state_left not in frontier_set:
             child = Node(state_left, node, "rotate_left", node.g + 1, node.depth + 1)
-            
-            if is_goal(child.state, goal):
-                if verbose:
-                    print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
-                
-                # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                goal_visited = False
-                while goal_visited is False and frontier:
-                    n = frontier.popleft()
-                    explored.append(n.state)
-                    if is_goal(n.state, goal):
-                        goal_visited = True
-                        break
-                print(f"Nodos visitados:")
-                for e in explored:
-                    print(f"  {e}")
-                
-                return child.path(), len(explored), len(frontier) # TODO al hacer pop en frontier los borro
-            
+                        
             frontier.append(child)
             frontier_set.add(state_left)
             generated.append((child.op, child.state))
+            
+            if is_goal(child.state, goal):
+                if verbose:
+                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
+                
+                return child.path(), explored, [n.state for n in frontier]
+
 
         # Imprimir sucesores generados y estado de la frontera
         if verbose:
@@ -149,7 +116,8 @@ def bfs(start, goal, matrix, verbose: bool = False):
     # Sin solución
     if verbose:
         print("No se alcanzó la meta.")
-    return None, len(explored), len(frontier)
+ 
+    return None, explored, [n.state for n in frontier]
 
 # -----------------------------
 # Depth-First Search (DFS)
@@ -168,7 +136,8 @@ def dfs(start, goal, matrix, verbose: bool = False):
     if is_goal(start, goal):
         if verbose:
             print(f"GOAL (inicio) alcanzado: {start} | coste=0 | profundidad=0\n")
-        return start_node.path(), 0, 0
+
+        return start_node.path(), [start], []
 
     frontier: list[Node] = [start_node] # pila para nodos por explorar
     frontier_set = {start} # estados en la frontera para evitar duplicados
@@ -200,38 +169,28 @@ def dfs(start, goal, matrix, verbose: bool = False):
         # Queremos que el orden de expansión sea: rotate_right -> move -> rotate_left, por lo 
         # que apilamos en orden inverso de exploración: rotate_left -> move -> rotate_right
 
-        # 1. Girar izquierda (se explorará el último)
+        # 1. Girar izquierda (se apila primero, se explorará último)
         o_left = (o - 1) % 8
         state_left = State(x, y, o_left)
+        added_left = False
         if state_left not in explored and state_left not in frontier_set:
             child = Node(state_left, node, "rotate_left", node.g + 1, node.depth + 1)
             
             if is_goal(child.state, goal):
                 if verbose:
-                    print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
-                
-                # TODO
-                # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                # goal_visited = False
-                # while goal_visited is False and frontier:
-                #     n = frontier.popleft()
-                #     explored.append(n.state)
-                #     if is_goal(n.state, goal):
-                #         goal_visited = True
-                #         break
-                # print(f"Nodos visitados:")
-                # for e in explored:
-                #     print(f"  {e}")
+                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
 
-                return child.path(), len(explored), len(frontier)
+                return child.path(), list(explored), [n.state for n in frontier]
 
             frontier.append(child)
             frontier_set.add(state_left)
-            generated.append((child.op, child.state))
+            added_left = True
 
         # 2. Mover
         dx, dy = MOVES[o]
         nx, ny = x + dx, y + dy
+        move_state = None
+        added_move = False
         if 0 <= nx < rows and 0 <= ny < cols:
             move_state = State(nx, ny, o)
             if move_state not in explored and move_state not in frontier_set:
@@ -240,69 +199,50 @@ def dfs(start, goal, matrix, verbose: bool = False):
                 
                 if is_goal(child.state, goal):
                     if verbose:
-                        print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
-                    
-                    # TODO
-                    # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                    # goal_visited = False
-                    # while goal_visited is False and frontier:
-                    #     n = frontier.popleft()
-                    #     explored.append(n.state)
-                    #     if is_goal(n.state, goal):
-                    #         goal_visited = True
-                    #         break
-                    # print(f"Nodos visitados:")
-                    # for e in explored:
-                    #     print(f"  {e}")
+                        print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
 
-                    return child.path(), len(explored), len(frontier)
+                    return child.path(), list(explored), [n.state for n in frontier]
                 
                 frontier.append(child)
                 frontier_set.add(move_state)
-                generated.append((child.op, child.state))
+                added_move = True
 
-        # 3. Girar derecha (se explorará primero)
+        # 3. Girar derecha (se apila último, se explorará primero)
         o_right = (o + 1) % 8
         state_right = State(x, y, o_right)
+        added_right = False
         if state_right not in explored and state_right not in frontier_set:
             child = Node(state_right, node, "rotate_right", node.g + 1, node.depth + 1)
             
             if is_goal(child.state, goal):
                 if verbose:
-                    print(f"  Generado objetivo -> {child.state} (g={child.g}, d={child.depth})\n")
+                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
 
-                # TODO
-                # Muestra todos los nodos ya visitados y los de la frontera restantes hasta el nodo meta
-                # goal_visited = False
-                # while goal_visited is False and frontier:
-                #     n = frontier.popleft()
-                #     explored.append(n.state)
-                #     if is_goal(n.state, goal):
-                #         goal_visited = True
-                #         break
-                # print(f"Nodos visitados:")
-                # for e in explored:
-                #     print(f"  {e}")
-
-                return child.path(), len(explored), len(frontier)
+                return child.path(), list(explored), [n.state for n in frontier]
             
             frontier.append(child)
             frontier_set.add(state_right)
-            generated.append((child.op, child.state))
+            added_right = True
 
-        # Para imprimir en el orden correcto (right, move, left) simplemente invertimos
-        generated_rev = list(reversed(generated))
+        # Construir 'generated' en el orden de exploración (right, move, left)
+        if added_right:
+            generated.append(("rotate_right", state_right))
+        if added_move:
+            generated.append(("move", move_state))
+        if added_left:
+            generated.append(("rotate_left", state_left))
 
         # Imprimir sucesores generados y estado de la frontera
         if verbose:
-            if generated_rev:
-                gen_str = ", ".join([f"{op}:{st}" for op, st in generated_rev])
+            if generated:
+                gen_str = ", ".join([f"{op}:{st}" for op, st in generated])
                 print(f"  Generados -> {gen_str}")
             else:
                 print("  (Sin sucesores nuevos)")
-            frontier_states = [f"{n.state}" for n in frontier]
+            frontier_states = [f"{n.state}" for n in reversed(frontier)]
             print(f"  Frontera: {frontier_states}\n")
+
 
     if verbose:
         print("No se alcanzó la meta.")
-    return None, len(explored), len(frontier)
+    return None, list(explored), [n.state for n in frontier]
