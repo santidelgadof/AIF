@@ -1,6 +1,6 @@
 import sys
 from problem import load_map
-from search import bfs, dfs
+from search import bfs, dfs, astar
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
@@ -18,6 +18,8 @@ if __name__ == "__main__":
         path, explored, frontier = bfs(start, goal, matrix, verbose=verbose)
     elif algo == "dfs":
         path, explored, frontier = dfs(start, goal, matrix, verbose=verbose)
+    elif algo == "astar":
+        path, explored, frontier = astar(start, goal, matrix, verbose=verbose)
     else:
         print("Algoritmo no reconocido (usa bfs o dfs)")
         sys.exit(1)

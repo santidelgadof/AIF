@@ -16,4 +16,7 @@ class Node:
             rev.append((node.state, node.g, node.depth, node.op))
             node = node.parent
         return list(reversed(rev))
+    
+    def __lt__(self, other):
+        return False  # siempre dice que no es menor, solo para romper empates
 
