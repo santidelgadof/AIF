@@ -5,7 +5,7 @@ from search import bfs, dfs, astar
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Uso: python main.py <map_file.txt> <algoritmo> [--verbose|-v]")
-        print("Algoritmos disponibles: bfs, dfs")
+        print("Algoritmos disponibles: bfs, dfs, astar")
         sys.exit(1)
 
     map_file = sys.argv[1]
@@ -21,16 +21,10 @@ if __name__ == "__main__":
     elif algo == "astar":
         path, explored, frontier = astar(start, goal, matrix, verbose=verbose)
     else:
-        print("Algoritmo no reconocido (usa bfs o dfs)")
+        print("Algoritmo no reconocido (usa bfs, dfs o astar)")
         sys.exit(1)
 
-    if path:
-        # Formato según la especificación de la práctica (Sección 4.2)
-        # Node 0 (starting node)
-        # Operator 1
-        # Node 1
-        # ...
-        
+    if path:        
         # Primer nodo (inicial)
         state0, g0, d0, op0 = path[0]
         if verbose:
