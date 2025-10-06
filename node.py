@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from state import State
     
-@dataclass
+@dataclass(slots=True)
 class Node:
     state: State
     parent: "Node | None"

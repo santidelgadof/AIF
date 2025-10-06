@@ -1,0 +1,93 @@
+EXPERIMENT RESULTS
+============================================================
+
+
+3x3 Maps:
+Algorithm                           d        g       #E       #F
+------------------------------------------------------------
+Breadth-First Search              5.0     10.6     10.0      5.0
+Depth-First Search               16.0     25.2     18.0      8.0
+A*                                5.0     10.6     24.6     10.4
+
+5x5 Maps:
+Algorithm                           d        g       #E       #F
+------------------------------------------------------------
+Breadth-First Search              7.0     15.4     30.0     25.0
+Depth-First Search               51.0     77.8     69.0     35.0
+A*                                7.0     15.4     84.6     31.4
+
+7x7 Maps:
+Algorithm                           d        g       #E       #F
+------------------------------------------------------------
+Breadth-First Search              9.0     21.0     97.0     55.0
+Depth-First Search              136.0    211.0    168.0     81.0
+A*                               10.8     20.4    181.6     53.8
+
+9x9 Maps:
+Algorithm                           d        g       #E       #F
+------------------------------------------------------------
+Breadth-First Search             11.0     27.6    225.0     87.0
+Depth-First Search              207.0    319.4    239.0    144.0
+A*                               13.0     25.8    313.8     79.8
+
+
+============================================================
+LATEX TABLES
+============================================================
+
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison for $3\times3$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+Breadth-First Search & 5.0 & 10.6 & 10.0 & 5.0 \\
+Depth-First Search & 16.0 & 25.2 & 18.0 & 8.0 \\
+A* (Euclidean + Rotation) & 5.0 & 10.6 & 24.6 & 10.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison for $5\times5$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+Breadth-First Search & 7.0 & 15.4 & 30.0 & 25.0 \\
+Depth-First Search & 51.0 & 77.8 & 69.0 & 35.0 \\
+A* (Euclidean + Rotation) & 7.0 & 15.4 & 84.6 & 31.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison for $7\times7$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+Breadth-First Search & 9.0 & 21.0 & 97.0 & 55.0 \\
+Depth-First Search & 136.0 & 211.0 & 168.0 & 81.0 \\
+A* (Euclidean + Rotation) & 10.8 & 20.4 & 181.6 & 53.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison for $9\times9$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+Breadth-First Search & 11.0 & 27.6 & 225.0 & 87.0 \\
+Depth-First Search & 207.0 & 319.4 & 239.0 & 144.0 \\
+A* (Euclidean + Rotation) & 13.0 & 25.8 & 313.8 & 79.8 \\
+\bottomrule
+\end{tabular}
+\end{table}

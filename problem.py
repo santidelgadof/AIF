@@ -32,18 +32,17 @@ def successors(state: State, matrix):
     x, y, o = state.x, state.y, state.o
     succs = []
 
-    # Rotar izquierda
-    succs.append(("rotate_left", State(x, y, (o - 1) % 8), 1))
-
-    # Rotar derecha
+    # 1) rotate_right
     succs.append(("rotate_right", State(x, y, (o + 1) % 8), 1))
 
-    # Avanzar
+    # 2) move (si cabe)
     dx, dy = MOVES[o]
     nx, ny = x + dx, y + dy
     if 0 <= nx < rows and 0 <= ny < cols:
-        cost = matrix[nx][ny]
-        succs.append(("move", State(nx, ny, o), cost))
+        succs.append(("move", State(nx, ny, o), matrix[nx][ny]))
+
+    # 3) rotate_left
+    succs.append(("rotate_left", State(x, y, (o - 1) % 8), 1))
 
     return succs
 
