@@ -18,5 +18,5 @@ class Node:
         return list(reversed(rev))
     
     def __lt__(self, other):
-        return False  # siempre dice que no es menor, solo para romper empates
+        return False  # always returns False, only for heap tie-breaking
 

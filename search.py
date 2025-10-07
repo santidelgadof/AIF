@@ -9,17 +9,17 @@ import math, itertools, heapq
 # ---------------------------------
 def bfs(start: State, goal: State, matrix, verbose: bool = False):
     """
-    Búsqueda en anchura (BFS):
-    - Orden de sucesores: rotate_right -> move -> rotate_left (delegado a problem.successors).
-    - Evita duplicados con frontier_set y explored.
-    - Traza paso a paso si verbose=True.
+    Breadth-First Search (BFS):
+    - Successor order: rotate_right -> move -> rotate_left (delegated to problem.successors).
+    - Avoids duplicates with frontier_set and explored.
+    - Step-by-step trace if verbose=True.
     """
     start_node = Node(start, None, "START", 0, 0)
 
-    # Caso trivial: inicio ya es meta
+    # Trivial case: start is already goal
     if is_goal(start, goal):
         if verbose:
-            print(f"GOAL (inicio) alcanzado: {start} | coste=0 | profundidad=0")
+            print(f"GOAL (start) reached: {start} | cost=0 | depth=0")
         return start_node.path(), [start], []
 
     frontier = deque([start_node])
@@ -36,11 +36,11 @@ def bfs(start: State, goal: State, matrix, verbose: bool = False):
         explored.add(node.state)
 
         if verbose:
-            print(f"[Paso {step}] Expandir: {node.state} (g={node.g}, d={node.depth})")
+            print(f"[Step {step}] Expand: {node.state} (g={node.g}, d={node.depth})")
             step += 1
 
         generated = []
-        # successors devuelve en orden: R, M, L
+        # successors returns in order: R, M, L
         for op, nxt, cost in successors(node.state, matrix):
             if nxt in explored or nxt in frontier_set:
                 continue
@@ -52,19 +52,19 @@ def bfs(start: State, goal: State, matrix, verbose: bool = False):
 
             if is_goal(child.state, goal):
                 if verbose:
-                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
+                    print(f"  Goal found -> {child.state} (g={child.g}, d={child.depth})\n")
                 return child.path(), list(explored), [n.state for n in frontier]
 
         if verbose:
             if generated:
                 gen_str = ", ".join([f"{op}:{st}" for op, st in generated])
-                print(f"  Generados -> {gen_str}")
+                print(f"  Generated -> {gen_str}")
             else:
-                print("  (Sin sucesores nuevos)")
-            print(f"  Frontera: {[f'{n.state}' for n in frontier]}\n")
+                print("  (No new successors)")
+            print(f"  Frontier: {[f'{n.state}' for n in frontier]}\n")
 
     if verbose:
-        print("No se alcanzó la meta.")
+        print("Goal not reached.")
     return None, list(explored), [n.state for n in frontier]
 
 
@@ -74,15 +74,15 @@ def bfs(start: State, goal: State, matrix, verbose: bool = False):
 def dfs(start: State, goal: State, matrix, verbose: bool = False):
     """
     Depth-First Search (DFS):
-    - Queremos explorar R -> M -> L, así que APILAMOS en orden inverso: L -> M -> R.
-    - Evita duplicados con frontier_set y explored.
-    - Traza si verbose=True.
+    - We want to explore R -> M -> L, so we STACK in reverse order: L -> M -> R.
+    - Avoids duplicates with frontier_set and explored.
+    - Trace if verbose=True.
     """
     start_node = Node(start, None, "START", 0, 0)
 
     if is_goal(start, goal):
         if verbose:
-            print(f"GOAL (inicio) alcanzado: {start} | coste=0 | profundidad=0\n")
+            print(f"GOAL (start) reached: {start} | cost=0 | depth=0\n")
         return start_node.path(), [start], []
 
     frontier: list[Node] = [start_node]
@@ -99,10 +99,10 @@ def dfs(start: State, goal: State, matrix, verbose: bool = False):
         explored.add(node.state)
 
         if verbose:
-            print(f"[Paso {step}] Expandir: {node.state} (g={node.g}, d={node.depth})\n")
+            print(f"[Step {step}] Expand: {node.state} (g={node.g}, d={node.depth})\n")
             step += 1
 
-        # Sucesores R, M, L -> apilar al revés
+        # Successors R, M, L -> stack in reverse order
         succs = list(successors(node.state, matrix))
         for op, nxt, cost in reversed(succs):
             if nxt in explored or nxt in frontier_set:
@@ -114,28 +114,28 @@ def dfs(start: State, goal: State, matrix, verbose: bool = False):
 
             if is_goal(child.state, goal):
                 if verbose:
-                    print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
+                    print(f"  Goal found -> {child.state} (g={child.g}, d={child.depth})\n")
                 return child.path(), list(explored), [n.state for n in frontier]
 
         if verbose:
             generated = []
-            for op, nxt, _ in succs:  # mostrar en orden de exploración (R, M, L)
+            for op, nxt, _ in succs:  # show in exploration order (R, M, L)
                 if nxt in frontier_set and nxt not in explored:
                     generated.append((op, nxt))
             if generated:
-                print("  Generados -> " + ", ".join([f"{op}:{st}" for op, st in generated]))
+                print("  Generated -> " + ", ".join([f"{op}:{st}" for op, st in generated]))
             else:
-                print("  (Sin sucesores nuevos)")
-            # Snapshot de la pila (tope al final)
-            print(f"  Frontera: {[f'{n.state}' for n in reversed(frontier)]}\n")
+                print("  (No new successors)")
+            # Stack snapshot (top at the end)
+            print(f"  Frontier: {[f'{n.state}' for n in reversed(frontier)]}\n")
 
     if verbose:
-        print("No se alcanzó la meta.")
+        print("Goal not reached.")
     return None, list(explored), [n.state for n in frontier]
 
 
 # ---------------------------------
-# Heurística A*
+# A* Heuristic
 # ---------------------------------
 def heuristic(state: State, goal: State):
     dx = goal.x - state.x
@@ -157,10 +157,10 @@ def heuristic(state: State, goal: State):
 def astar(start: State, goal: State, matrix, verbose: bool = False):
     """
     A*:
-     - Inserta en la frontera solo si mejora g para ese estado.
-     - Ignora entradas obsoletas del heap.
-     - No reabre estados ya cerrados (explored).
-     - Usa successors() (orden R -> M -> L).
+     - Inserts into frontier only if it improves g for that state.
+     - Ignores obsolete heap entries.
+     - Does not reopen closed states (explored).
+     - Uses successors() (order R -> M -> L).
     """
     counter = itertools.count()
     start_node = Node(start, None, "START", 0, 0)
@@ -170,10 +170,10 @@ def astar(start: State, goal: State, matrix, verbose: bool = False):
     start_f = heuristic(start, goal) + start_node.g
     heapq.heappush(frontier, (start_f, next(counter), start_node))
 
-    # frontier_best: estado -> mejor g actualmente en la frontera
+    # frontier_best: state -> best g currently in frontier
     frontier_best = {start: start_node.g}
 
-    # explored: estado -> mejor g ya expandido (cerrado)
+    # explored: state -> best g already expanded (closed)
     explored = {}
 
     step = 0
@@ -181,32 +181,32 @@ def astar(start: State, goal: State, matrix, verbose: bool = False):
     while frontier:
         f_curr, _, node = heapq.heappop(frontier)
 
-        # Entrada obsoleta (g ya no coincide con el mejor)
+        # Obsolete entry (g no longer matches best)
         best_g_for_state = frontier_best.get(node.state)
         if best_g_for_state is None or node.g != best_g_for_state:
             continue
 
-        # Sacamos de la frontera y pasamos a cerrado
+        # Remove from frontier and move to closed
         del frontier_best[node.state]
 
         if node.state in explored:
             continue
         explored[node.state] = node.g
 
-        # Objetivo
+        # Goal test
         if is_goal(node.state, goal):
             if verbose:
-                print(f"GOAL alcanzado: {node.state} con coste={node.g}")
+                print(f"GOAL reached: {node.state} with cost={node.g}")
             return node.path(), list(explored.keys()), list(frontier_best.keys())
 
         if verbose:
             hval = heuristic(node.state, goal)
-            print(f"[Paso {step}] Expandir {node.state} | g={node.g}, h={hval:.2f}, f={node.g + hval:.2f}")
+            print(f"[Step {step}] Expand {node.state} | g={node.g}, h={hval:.2f}, f={node.g + hval:.2f}")
             step += 1
 
         generated = []
 
-        # EXPANSIÓN usando el orden R -> M -> L
+        # EXPANSION using R -> M -> L order
         for op, nxt, cost in successors(node.state, matrix):
             if nxt in explored:
                 continue
@@ -222,18 +222,18 @@ def astar(start: State, goal: State, matrix, verbose: bool = False):
         if verbose:
             if generated:
                 gen_str = ", ".join([f"{op}:{st}" for op, st in generated])
-                print(f"  Generados -> {gen_str}")
+                print(f"  Generated -> {gen_str}")
             else:
-                print("  (Sin sucesores nuevos)")
-            # Snapshot de frontera ordenada por f (a partir de frontier_best)
+                print("  (No new successors)")
+            # Frontier snapshot ordered by f (from frontier_best)
             snapshot = []
             for st, gval in frontier_best.items():
                 fval = gval + heuristic(st, goal)
                 snapshot.append((fval, st, gval))
             snapshot.sort(key=lambda x: x[0])
             fr_str = [f"{st} g={gval} f={fval:.2f}" for (fval, st, gval) in snapshot]
-            print(f"  Frontera (ordenada por f): {fr_str}\n")
+            print(f"  Frontier (ordered by f): {fr_str}\n")
 
     if verbose:
-        print("No se alcanzó la meta.")
+        print("Goal not reached.")
     return None, list(explored.keys()), list(frontier_best.keys())

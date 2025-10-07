@@ -17,7 +17,7 @@ from search import bfs, dfs, astar
 
 
 def generate_random_map(n, output_file, start_pos=(0, 0), goal_pos=None, 
-                       min_hardness=1, max_hardness=5):
+                       min_hardness=1, max_hardness=9):
     """
     Generate a random map and save to file.
     

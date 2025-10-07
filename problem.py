@@ -1,6 +1,6 @@
 from state import State
 
-# Orientaciones (dx, dy)
+# Orientations (dx, dy)
 MOVES = [
     (-1, 0),   # 0: North
     (-1, 1),   # 1: NE
@@ -35,7 +35,7 @@ def successors(state: State, matrix):
     # 1) rotate_right
     succs.append(("rotate_right", State(x, y, (o + 1) % 8), 1))
 
-    # 2) move (si cabe)
+    # 2) move (if within bounds)
     dx, dy = MOVES[o]
     nx, ny = x + dx, y + dy
     if 0 <= nx < rows and 0 <= ny < cols:

@@ -4,8 +4,8 @@ from search import bfs, dfs, astar, heuristic
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Uso: python main.py <map_file.txt> <algoritmo> [--verbose|-v]")
-        print("Algoritmos disponibles: bfs, dfs, astar")
+        print("Usage: python main.py <map_file.txt> <algorithm> [--verbose|-v]")
+        print("Available algorithms: bfs, dfs, astar")
         sys.exit(1)
 
     map_file = sys.argv[1]
@@ -21,11 +21,11 @@ if __name__ == "__main__":
     elif algo == "astar":
         path, explored, frontier = astar(start, goal, matrix, verbose=verbose)
     else:
-        print("Algoritmo no reconocido (usa bfs, dfs o astar)")
+        print("Algorithm not recognized (use bfs, dfs or astar)")
         sys.exit(1)
 
     if path:
-        # Nodo 0
+        # Node 0
         state0, g0, d0, op0 = path[0]
         if verbose:
             print("\n\n-------------------------------------------------\n\n")
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         else:
             print(f"  ({d0}, {g0}, {op0}, {state0})")
 
-        # Resto de nodos
+        # Remaining nodes
         for i in range(1, len(path)):
             state, g, d, op = path[i]
             print(f"\nOperator {i}")
@@ -48,8 +48,8 @@ if __name__ == "__main__":
             else:
                 print(f"  ({d}, {g}, {op}, {state})")
         
-        # Estadísticas finales
+        # Final statistics
         print(f"\nTotal number of items in explored list: {len(explored)}")
         print(f"Total number of items in frontier: {len(frontier)}")
     else:
-        print("No se encontró solución")
+        print("No solution found")
