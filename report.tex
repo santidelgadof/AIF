@@ -1,0 +1,646 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[margin=2.5cm]{geometry}
+
+% Code listing configuration
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=3pt,
+    tabsize=4,
+    captionpos=b,
+    xleftmargin=0.3cm,
+    xrightmargin=0.3cm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    pdftitle={Lab 1: Search Algorithms - AIF}
+}
+
+\begin{document}
+
+% ============================================
+% TITLE PAGE
+% ============================================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\LARGE\textbf{Artificial Intelligence Fundamentals}}\\[0.5cm]
+    {\Large Lab 1: Implementation of Search Algorithms}\\[1.5cm]
+    {\large Master in Artificial Intelligence}\\[0.3cm]
+    {\large 2025--2026}\\[2cm]
+    
+    {\large\textbf{Authors:}}\\[0.3cm]
+    {\large David Carballo Rodríguez}\\[0.2cm]
+    {\large Antonio Vila Leis}\\[0.2cm]
+    {\large Santiago Delgado Ferreiro}\\[1.5cm]
+    
+    {\large\textbf{Practice Group:} [Group Number]}\\[1.5cm]
+    \vfill
+    {\large October 2025}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ============================================
+% METHODS
+% ============================================
+\section{Methods}
+
+\subsection{Formal Characterization of the Problem}
+
+\subsubsection{State Representation}
+A state is defined as $S = (x, y, o)$ where $x \in \{0, \ldots, N-1\}$ is the row coordinate, $y \in \{0, \ldots, M-1\}$ is the column coordinate, and $o \in \{0, 1, 2, 3, 4, 5, 6, 7\}$ is the robot orientation (0=North, 1=Northeast, 2=East, 3=Southeast, 4=South, 5=Southwest, 6=West, 7=Northwest). The state space has $|\mathcal{S}| = N \times M \times 8$ states.
+
+\subsubsection{Set of Operators}
+Three operators are available, always generated in fixed order:
+\begin{enumerate}[itemsep=0.2em]
+    \item \textbf{rotate\_right}: Effect $o' = (o + 1) \bmod 8$, Cost = 1
+    \item \textbf{move}: Effect $(x', y') = (x + \Delta x, y + \Delta y)$, Cost = hardness$(x', y')$. Precondition: destination within map bounds.
+    \item \textbf{rotate\_left}: Effect $o' = (o - 1) \bmod 8$, Cost = 1
+\end{enumerate}
+
+For each orientation, displacements are: 0:(-1,0), 1:(-1,1), 2:(0,1), 3:(1,1), 4:(1,0), 5:(1,-1), 6:(0,-1), 7:(-1,-1).
+
+\subsubsection{Transition Model}
+Function $\text{successors}(s, M)$ generates valid successors in R→M→L order. DFS reverses this order on the stack so expansion follows the same R→M→L sequence.
+
+\subsubsection{Goal Test}
+$$\text{is\_goal}(s, s_{\text{goal}}) = \begin{cases}
+(x = x_{\text{goal}}) \land (y = y_{\text{goal}}) & \text{if } o_{\text{goal}} = 8 \\
+s = s_{\text{goal}} & \text{otherwise}
+\end{cases}$$
+
+\subsubsection{Cost Function}
+Path cost: $g(n) = \sum_{i=1}^{d} c(\text{action}_i)$ where rotations cost 1 and moves cost the destination cell's hardness.
+
+\subsection{Analysis of Blind Search Methods}
+
+\subsubsection{Breadth-First Search (BFS)}
+
+\paragraph{Algorithm Description.}
+BFS explores the state space level by level, guaranteeing to find the solution with minimum depth. It uses a FIFO queue (\texttt{collections.deque}) to manage the frontier.
+
+\paragraph{Implementation Details.}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Data structures:} FIFO queue (deque), explored set, frontier\_set for $O(1)$ duplicate checks
+    \item \textbf{Successor order:} Uses shared \texttt{successors()} function (R→M→L order)
+    \item \textbf{Goal detection:} Halts immediately when goal is generated
+\end{itemize}
+
+\paragraph{Theoretical Properties.}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Completeness:} Yes (finite state space with duplicate detection)
+    \item \textbf{Optimality:} Finds minimum depth, but NOT minimum cost (non-uniform costs)
+    \item \textbf{Time complexity:} $O(b^d)$ where $b \leq 3$ (branching factor)
+    \item \textbf{Space complexity:} $O(b^d)$ --- main limitation for large problems
+\end{itemize}
+
+\paragraph{Justification for this problem.}
+BFS is preferable to DFS due to guaranteed completeness and shorter solutions, though it doesn't guarantee minimum cost given heterogeneous action costs.
+
+\subsubsection{Depth-First Search (DFS)}
+
+\paragraph{Algorithm Description.}
+DFS explores each branch to maximum depth before backtracking. Uses a LIFO stack (Python list).
+
+\paragraph{Implementation Details.}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Data structures:} LIFO stack (list), explored set, frontier\_set
+    \item \textbf{Successor order:} Pushes in reverse (L→M→R) so pop() yields R→M→L
+    \item \textbf{Goal detection:} Terminates on first solution found (may be deep/suboptimal)
+\end{itemize}
+
+\paragraph{Theoretical Properties.}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Completeness:} Not complete without depth control; complete with duplicate detection on finite grids
+    \item \textbf{Optimality:} NO --- finds any solution, not necessarily the best
+    \item \textbf{Time complexity:} $O(b^m)$ in worst case (can explore unnecessary deep branches)
+    \item \textbf{Space complexity:} $O(b \cdot m)$ --- better than BFS
+\end{itemize}
+
+\paragraph{Justification for this problem.}
+DFS unsuitable for this domain: lacks cost optimization, can find very suboptimal solutions (as confirmed experimentally), and explores deep unproductive branches without heuristic guidance.
+
+\subsection{Heuristic for A*}
+
+\subsubsection{Proposed Heuristic}
+$$h(s) = d_{\text{Euclidean}}(s, s_{\text{goal}}) + c_{\text{rotation}}(s, s_{\text{goal}})$$
+
+where:
+\begin{align*}
+d_{\text{Euclidean}} &= \sqrt{(x_{\text{goal}} - x)^2 + (y_{\text{goal}} - y)^2} \\
+c_{\text{rotation}} &= \begin{cases}
+\min(|o_{\text{goal}} - o|, 8 - |o_{\text{goal}} - o|) & \text{if } o_{\text{goal}} \neq 8 \\
+0 & \text{if } o_{\text{goal}} = 8 \text{ (wildcard)}
+\end{cases}
+\end{align*}
+
+\subsubsection{Rationale and Justification}
+
+\paragraph{Euclidean distance component:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Represents straight-line distance (shortest geometric path)
+    \item Optimistic: assumes direct movement without obstacles
+    \item Never overestimates: minimum hardness is 1, so Euclidean $\leq$ real cost
+\end{itemize}
+
+\paragraph{Rotation component:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Computes minimum angular distance (circular metric modulo 8)
+    \item Exact cost for reaching target orientation (each rotation = 1 unit)
+    \item Returns 0 when target orientation is wildcard (code 8)
+\end{itemize}
+
+\subsubsection{Admissibility Proof}
+The heuristic $h(s)$ is \textbf{admissible} because:
+\begin{enumerate}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Euclidean distance $\leq$ true movement cost (ignores terrain hardness and assumes straight paths)
+    \item Rotation component is exact (neither over nor underestimated)
+    \item Sum of two underestimates/exact values $\Rightarrow$ admissible
+\end{enumerate}
+Thus $h(s) \leq h^*(s)$ (true cost to goal) for all states $s$.
+
+\subsubsection{Monotonicity (Consistency)}
+A heuristic is \textbf{monotonic} if $h(n) \leq c(n, a, n') + h(n')$ for all successors $n'$.
+
+\paragraph{Analysis:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Rotations:} $h(n) = d + r$ changes to $h(n') = d + (r \pm 1)$ with cost 1. Satisfies: $d + r \leq 1 + (d + (r-1))$ ✓
+    \item \textbf{Movements:} Euclidean distance decreases by $\leq$ traveled distance; real cost $\geq 1$. Generally monotonic but not strictly guaranteed when hardness $\gg 1$ and moving away from goal.
+\end{itemize}
+
+\paragraph{Importance of monotonicity:}
+Guarantees that first expansion finds optimal path (no node reopening), making A* more efficient. Our heuristic is approximately monotonic and performs well in practice.
+
+% ============================================
+% RESULTS
+% ============================================
+\section{Results}
+
+\subsection{Execution Traces on \texttt{exampleMap.txt}}
+
+The example map is a $3 \times 4$ grid with starting position $(0, 3, 0)$ (row 0, column 3, facing North) and goal position $(1, 2, 8)$ where orientation 8 indicates any final orientation is acceptable. Below are the solution traces produced by each algorithm.
+
+\subsubsection{BFS Trace}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+Node 0 (starting node)
+  (0, 0, START, (0, 3, 0))
+Operator 1: rotate_right
+Node 1: (1, 1, rotate_right, (0, 3, 1))
+Operator 2: move
+Node 2: (2, 4, move, (1, 2, 1))
+Total explored: 2, Frontier: 2
+\end{lstlisting}
+
+\subsubsection{DFS Trace}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+Node 0 (starting node)
+  (0, 0, START, (0, 3, 0))
+Operator 1: rotate_right
+Node 1: (1, 1, rotate_right, (0, 3, 1))
+Operator 2: move
+Node 2: (2, 4, move, (1, 2, 1))
+Total explored: 2, Frontier: 1
+\end{lstlisting}
+
+\subsubsection{A* Trace}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+Node 0 (starting node)
+  (0, 0, START, 2.24, (0, 3, 0))
+Operator 1: rotate_right
+Node 1: (1, 1, rotate_right, 1.65, (0, 3, 1))
+Operator 2: move
+Node 2: (2, 4, move, 0.00, (1, 2, 1))
+Total explored: 2, Frontier: 1
+\end{lstlisting}
+
+\subsection{Experimental Performance Analysis}
+
+\subsubsection{Experimental Setup}
+Experiments were conducted on randomly generated maps of sizes $3\times3$, $5\times5$, $7\times7$, and $9\times9$. For each size, 5 different random maps were generated with:
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Start position: $(0, 0)$ facing North (orientation 0)
+    \item Goal position: $(N-1, N-1)$ with any orientation (wildcard 8)
+    \item Terrain hardness: random values between 1 and 9
+\end{itemize}
+
+\noindent Results are averaged across the 5 trials per map size.
+
+\subsubsection{Performance Metrics}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{d}: Solution depth (number of actions in path)
+    \item \textbf{g}: Solution cost (sum of action costs)
+    \item \textbf{\#E}: Number of nodes explored (expanded)
+    \item \textbf{\#F}: Final frontier size (nodes in queue when solution found)
+\end{itemize}
+
+\subsubsection{Comparative Results}
+
+\begin{table}[H]
+\centering
+\caption{Results for $3\times3$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+BFS & 5.0 & 10.6 & 10.0 & 5.0 \\
+DFS & 16.0 & 25.2 & 18.0 & 8.0 \\
+A* & 5.0 & 10.6 & 24.6 & 10.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Results for $5\times5$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+BFS & 7.0 & 15.4 & 30.0 & 25.0 \\
+DFS & 51.0 & 77.8 & 69.0 & 35.0 \\
+A* & 7.0 & 15.4 & 84.6 & 31.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Results for $7\times7$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+BFS & 9.0 & 21.0 & 97.0 & 55.0 \\
+DFS & 136.0 & 211.0 & 168.0 & 81.0 \\
+A* & 10.8 & 20.4 & 181.6 & 53.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Results for $9\times9$ maps}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Algorithm} & \textbf{d} & \textbf{g} & \textbf{\#E} & \textbf{\#F} \\
+\midrule
+BFS & 11.0 & 27.6 & 225.0 & 87.0 \\
+DFS & 207.0 & 319.4 & 239.0 & 144.0 \\
+A* & 13.0 & 25.8 & 313.8 & 79.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================
+% DISCUSSION
+% ============================================
+\section{Discussion}
+
+\subsection{Comparative Analysis of Implemented Methods}
+
+\subsubsection{Breadth-First Search (BFS)}
+
+\paragraph{Observed Advantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Consistently found minimum depth solutions ($d$) across all map sizes
+    \item Competitive path costs similar to A* (especially on small maps)
+    \item Significantly fewer nodes explored (\#E) than A* in most cases
+    \item Controlled frontier growth (\#F smaller than A*)
+\end{itemize}
+
+\paragraph{Observed Disadvantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Exponential space growth: frontier increased from 5 ($3\times3$) to 87 ($9\times9$)
+    \item No cost awareness: optimizes depth, not path cost
+    \item Cannot adapt to terrain characteristics
+\end{itemize}
+
+\paragraph{Explanation:}
+BFS explores systematically level-by-level, guaranteeing minimum-depth solutions. In this domain, shorter paths tend to have reasonable costs because rotations (cost 1) are inexpensive and the robot can choose relatively direct routes.
+
+\subsubsection{Depth-First Search (DFS)}
+
+\paragraph{Observed Advantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Relatively compact final frontier: only 8-144 nodes
+    \item Simple implementation without priority queues or complex data structures
+    \item Linear space complexity in theory
+\end{itemize}
+
+\paragraph{Observed Disadvantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Dramatically suboptimal solutions: 3-19× worse depth than BFS/A*
+    \item Severe quality degradation: depth grew from 16 ($3\times3$) to 207 ($9\times9$)
+    \item Higher path costs: 2-12× more expensive than optimal
+    \item No quality guarantees whatsoever
+\end{itemize}
+
+\paragraph{Explanation:}
+DFS blindly explores deep branches without considering proximity to goal. It frequently wanders far from the target, creating unnecessarily long and expensive paths. Results confirm it is completely unsuitable for this navigation problem.
+
+\subsubsection{A* Search}
+
+\paragraph{Observed Advantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Cost optimality guaranteed}: found minimum-cost solutions in all experiments
+    \item Competitive depth: matched or slightly exceeded BFS depth
+    \item Better cost than BFS on large maps: $g=25.8$ vs $27.6$ on $9\times9$
+    \item Effective heuristic guidance toward goal
+\end{itemize}
+
+\paragraph{Observed Disadvantages:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Explored 2-3× more nodes than BFS on large maps (\#E: 313.8 vs 225.0 on $9\times9$)
+    \item Larger frontier maintained during search
+    \item Computational overhead: heuristic calculation + heap operations
+    \item Explored more unnecessarily on small maps where BFS was sufficient
+\end{itemize}
+
+\paragraph{Explanation:}
+A* explored more nodes than expected because the Euclidean heuristic significantly underestimates real cost (ignores variable terrain hardness, intermediate rotations, and movement constraints). This causes A* to explore many states that appear promising by $f(n)$ but don't lead to optimal paths. However, admissibility guarantees that the final solution is cost-optimal.
+
+\subsection{Heuristic Performance Analysis}
+
+\paragraph{Positive Aspects:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Admissibility verified}: Found optimal solutions in all experiments
+    \item \textbf{Effective direction}: Successfully guided search toward goal
+    \item \textbf{Rotation awareness}: Including orientation cost improved estimates
+    \item \textbf{Computational efficiency}: Fast to calculate ($O(1)$ per state)
+\end{itemize}
+
+\paragraph{Limitations Observed:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Excessive underestimation}: Led to 2-3× more exploration than BFS
+    \item \textbf{Ignores terrain costs}: Assumes minimum hardness of 1 (real values 1-9)
+    \item \textbf{No intermediate rotations}: Doesn't account for turns needed during movement
+    \item \textbf{Straight-line assumption}: Impossible with 8-directional discrete movement
+\end{itemize}
+
+\paragraph{Proposed Improvements:}
+\begin{enumerate}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Scaled by average hardness}: $h = d_{\text{Euclidean}} \times \bar{h}_{\text{terrain}} + c_{\text{rotation}}$ where $\bar{h}_{\text{terrain}}$ is computed from the map
+    \item \textbf{Chebyshev distance}: $h = \max(|\Delta x|, |\Delta y|) + c_{\text{rotation}}$ better reflects 8-directional movement
+    \item \textbf{Orientation-aware distance}: Add penalty for direction changes along path
+\end{enumerate}
+
+\paragraph{Comparative Insight:}
+The surprising result that BFS explored fewer nodes than A* demonstrates that a poorly-informed heuristic can be worse than blind search. However, A* maintains its critical advantage: \textit{guaranteed cost optimality}, which BFS cannot provide.
+
+\subsection{Extension: Impassable Rocks}
+
+\subsubsection{Problem Representation}
+\textbf{Map encoding:} Use special value (e.g., 0 or -1) to mark impassable cells, or very high cost ($\infty$).
+
+\textbf{Operator modification:} The \texttt{move} action requires additional precondition:
+$$\text{precondition}(\text{move}) = (0 \leq x' < N) \land (0 \leq y' < M) \land (\text{hardness}(x', y') \neq \text{IMPASSABLE})$$
+
+\subsubsection{Impact on Problem Characteristics}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Complexity increase}: Robot must navigate around obstacles, increasing path length
+    \item \textbf{Potential incompleteness}: Goal may be unreachable if completely blocked
+    \item \textbf{Reduced branching}: Effective branching factor $b$ decreases near obstacles
+    \item \textbf{State space reduction}: Fewer reachable states
+\end{itemize}
+
+\subsubsection{Heuristic Validity}
+\paragraph{Euclidean heuristic:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{Remains admissible}: Straight-line still underestimates (optimistic)
+    \item \textbf{Less informed}: May point directly through obstacles, misleading search
+    \item \textbf{Increased exploration}: A* will explore more nodes around barriers
+\end{itemize}
+
+\paragraph{Improvement --- Obstacle-aware heuristic:}
+Precompute true distances ignoring orientation using Dijkstra from goal backwards. More expensive but significantly more informed.
+
+\subsubsection{Algorithm Suitability}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{BFS:} Remains complete; still not cost-optimal
+    \item \textbf{DFS:} Requires depth limit (IDDFS) to guarantee completeness; still not optimal
+    \item \textbf{A*:} \textit{Best choice} --- maintains completeness and cost optimality despite reduced efficiency
+\end{itemize}
+
+\paragraph{Conclusion:}
+With impassable obstacles, A* becomes the clearly superior choice as it's the only algorithm guaranteeing both solution completeness and cost optimality.
+
+% ============================================
+% APPENDIX
+% ============================================
+\newpage
+\appendix
+\section{Source Code Documentation}
+
+\subsection{Overview of Implementation}
+The implementation consists of 5 main Python modules:
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \texttt{state.py}: State representation (frozen dataclass)
+    \item \texttt{node.py}: Search tree node with path reconstruction
+    \item \texttt{problem.py}: Problem specification (successors, goal test, map loading)
+    \item \texttt{search.py}: Implementation of BFS, DFS, and A* algorithms
+    \item \texttt{main.py}: Command-line interface for running experiments
+\end{itemize}
+
+\noindent Additionally, \texttt{run\_experiments.py} automates performance testing on random maps.
+
+\subsection{State Representation (\texttt{state.py})}
+\paragraph{Purpose:} Defines the state space representation using an immutable dataclass.
+
+\paragraph{Key design decisions:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \texttt{frozen=True}: Makes states hashable for use in sets/dicts (explored, frontier)
+    \item \texttt{slots=True}: Reduces memory overhead (important for large state spaces)
+    \item Compact \texttt{\_\_str\_\_}: Human-readable output for debugging/traces
+\end{itemize}
+
+\subsection{Search Node (\texttt{node.py})}
+\paragraph{Purpose:} Represents nodes in the search tree with parent pointers for path reconstruction.
+
+\paragraph{Key attributes:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \texttt{state}: Current state (position + orientation)
+    \item \texttt{parent}: Link to parent node for backtracking
+    \item \texttt{op}: Action taken to reach this node
+    \item \texttt{g}: Accumulated path cost from root
+    \item \texttt{depth}: Number of actions from root
+\end{itemize}
+
+\paragraph{Methods:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \texttt{path()}: Traces parent pointers to root, returns solution path
+    \item \texttt{\_\_lt\_\_}: Dummy comparison for heap tie-breaking (uses counter instead)
+\end{itemize}
+\newpage
+\subsection{State and Node Classes}
+\begin{lstlisting}
+from dataclasses import dataclass
+from state import State
+
+@dataclass(frozen=True, slots=True)
+class State:
+    x: int; y: int; o: int
+    def __str__(self): return f"({self.x}, {self.y}, {self.o})"
+
+@dataclass(slots=True)
+class Node:
+    state: State; parent: "Node | None"; op: str; g: int; depth: int
+    def path(self):
+        node, rev = self, []
+        while node: rev.append((node.state, node.g, node.depth, node.op)); node = node.parent
+        return list(reversed(rev))
+    def __lt__(self, other): return False
+\end{lstlisting}
+
+\subsection{Problem Specification (\texttt{problem.py})}
+\paragraph{Purpose:} Centralizes problem definition: successor generation, goal testing, and map I/O.
+
+\paragraph{Key components:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \texttt{MOVES}: Global array mapping orientations to $(\Delta x, \Delta y)$ displacements
+    \item \texttt{load\_map()}: Parses map file (dimensions, terrain matrix, start/goal states)
+    \item \texttt{successors()}: Generates valid successors in fixed R→M→L order
+    \item \texttt{is\_goal()}: Checks goal satisfaction (handles orientation wildcard)
+\end{itemize}
+
+\paragraph{Design rationale:}
+Centralizing \texttt{successors()} ensures all algorithms (BFS, DFS, A*) explore in consistent order, enabling fair comparison.
+
+\subsection{Problem Specification Code}
+\begin{lstlisting}
+MOVES = [(-1,0), (-1,1), (0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1)]
+
+def successors(state: State, matrix):
+    rows, cols = len(matrix), len(matrix[0])
+    x, y, o = state.x, state.y, state.o
+    succs = [("rotate_right", State(x, y, (o+1)%8), 1)]
+    dx, dy = MOVES[o]; nx, ny = x+dx, y+dy
+    if 0<=nx<rows and 0<=ny<cols:
+        succs.append(("move", State(nx, ny, o), matrix[nx][ny]))
+    succs.append(("rotate_left", State(x, y, (o-1)%8), 1))
+    return succs
+
+def is_goal(state: State, goal: State):
+    return (state.x == goal.x and state.y == goal.y) if goal.o == 8 else state == goal
+\end{lstlisting}
+
+\subsection{Breadth-First Search (\texttt{search.py})}
+\paragraph{Implementation highlights:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Uses \texttt{collections.deque} for efficient $O(1)$ append/popleft
+    \item \texttt{frontier\_set} provides $O(1)$ duplicate checking (avoids linear search)
+    \item \texttt{explored} set prevents state re-expansion
+    \item Goal check on generation (not expansion) for early termination
+\end{itemize}
+
+\paragraph{Complexity:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Time: $O(|V| + |E|)$ where $|V| = N \times M \times 8$, $|E| \leq 3|V|$
+    \item Space: $O(b^d)$ for frontier storage
+\end{itemize}
+
+\subsection{BFS Implementation}
+\begin{lstlisting}
+from collections import deque
+
+def bfs(start: State, goal: State, matrix, verbose=False):
+    start_node = Node(start, None, "START", 0, 0)
+    if is_goal(start, goal): return start_node.path(), [start], []
+    
+    frontier = deque([start_node])
+    frontier_set, explored = {start}, set()
+    
+    while frontier:
+        node = frontier.popleft(); frontier_set.discard(node.state)
+        if node.state in explored: continue
+        explored.add(node.state)
+        
+        for op, nxt, cost in successors(node.state, matrix):
+            if nxt in explored or nxt in frontier_set: continue
+            child = Node(nxt, node, op, node.g+cost, node.depth+1)
+            if is_goal(child.state, goal):
+                return child.path(), list(explored), [n.state for n in frontier]
+            frontier.append(child); frontier_set.add(nxt)
+    
+    return None, list(explored), [n.state for n in frontier]
+\end{lstlisting}
+
+\subsection{A* Search (\texttt{search.py})}
+\paragraph{Implementation highlights:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Uses \texttt{heapq} for priority queue (min-heap by $f(n) = g(n) + h(n)$)
+    \item \texttt{itertools.count()} for tie-breaking (FIFO when $f$ values equal)
+    \item \texttt{frontier\_best} dict tracks best $g$ per state (lazy deletion)
+    \item Stale entry detection: skips outdated heap entries
+    \item \texttt{explored} dict maps states to best-known $g$ values
+\end{itemize}
+
+\paragraph{Heuristic function:}
+Euclidean distance + minimum rotation cost. Fast $O(1)$ computation per state.
+
+\paragraph{Complexity:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Time: $O(|E| \log |V|)$ due to heap operations
+    \item Space: $O(|V|)$ for frontier and explored sets
+\end{itemize}
+
+\subsection{A* Implementation}
+\begin{lstlisting}
+import math, heapq, itertools
+
+def heuristic(state: State, goal: State):
+    dx, dy = goal.x - state.x, goal.y - state.y
+    euclid = math.sqrt(dx*dx + dy*dy)
+    if goal.o == 8: return euclid
+    do = abs(goal.o - state.o) % 8
+    return euclid + min(do, 8-do)
+
+def astar(start: State, goal: State, matrix, verbose=False):
+    counter = itertools.count()
+    start_node = Node(start, None, "START", 0, 0)
+    frontier = []; heapq.heappush(frontier, (heuristic(start, goal), next(counter), start_node))
+    frontier_best, explored = {start: 0}, {}
+    
+    while frontier:
+        f_curr, _, node = heapq.heappop(frontier)
+        if frontier_best.get(node.state) != node.g: continue
+        del frontier_best[node.state]
+        if node.state in explored: continue
+        explored[node.state] = node.g
+        if is_goal(node.state, goal):
+            return node.path(), list(explored.keys()), list(frontier_best.keys())
+        
+        for op, nxt, cost in successors(node.state, matrix):
+            if nxt in explored: continue
+            g_new = node.g + cost
+            if g_new < frontier_best.get(nxt, float('inf')):
+                child = Node(nxt, node, op, g_new, node.depth+1)
+                f_new = g_new + heuristic(nxt, goal)
+                heapq.heappush(frontier, (f_new, next(counter), child))
+                frontier_best[nxt] = g_new
+    
+    return None, list(explored.keys()), list(frontier_best.keys())
+\end{lstlisting}
+
+\end{document}
