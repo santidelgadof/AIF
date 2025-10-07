@@ -1,10 +1,3 @@
-# 🤖 Search Algorithms - Lab 1 AIF
-
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-Implementation of search algorithms (BFS, DFS, A*) for robot pathfinding on terrain with varying hardness levels.
-
 **Authors:** David Carballo Rodríguez, Antonio Vila Leis, Santiago Delgado Ferreiro  
 **Course:** Artificial Intelligence Fundamentals - Master in AI (2025-2026)
 

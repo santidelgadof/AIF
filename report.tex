@@ -186,7 +186,7 @@ A heuristic is \textbf{monotonic} if $h(n) \leq c(n, a, n') + h(n')$ for all suc
 
 \paragraph{Analysis:}
 \begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
-    \item \textbf{Rotations:} $h(n) = d + r$ changes to $h(n') = d + (r \pm 1)$ with cost 1. Satisfies: $d + r \leq 1 + (d + (r-1))$ ✓
+    \item \textbf{Rotations:} $h(n) = d + r$ changes to $h(n') = d + (r \pm 1)$ with cost 1. Satisfies: $d + r \leq 1 + (d + (r-1))$ \checkmark
     \item \textbf{Movements:} Euclidean distance decreases by $\leq$ traveled distance; real cost $\geq 1$. Generally monotonic but not strictly guaranteed when hardness $\gg 1$ and moving away from goal.
 \end{itemize}
 
@@ -399,13 +399,6 @@ A* explored more nodes than expected because the Euclidean heuristic significant
     \item \textbf{Straight-line assumption}: Impossible with 8-directional discrete movement
 \end{itemize}
 
-\paragraph{Proposed Improvements:}
-\begin{enumerate}[leftmargin=1.5cm,itemsep=0.1em]
-    \item \textbf{Scaled by average hardness}: $h = d_{\text{Euclidean}} \times \bar{h}_{\text{terrain}} + c_{\text{rotation}}$ where $\bar{h}_{\text{terrain}}$ is computed from the map
-    \item \textbf{Chebyshev distance}: $h = \max(|\Delta x|, |\Delta y|) + c_{\text{rotation}}$ better reflects 8-directional movement
-    \item \textbf{Orientation-aware distance}: Add penalty for direction changes along path
-\end{enumerate}
-
 \paragraph{Comparative Insight:}
 The surprising result that BFS explored fewer nodes than A* demonstrates that a poorly-informed heuristic can be worse than blind search. However, A* maintains its critical advantage: \textit{guaranteed cost optimality}, which BFS cannot provide.
 
@@ -445,11 +438,10 @@ Precompute true distances ignoring orientation using Dijkstra from goal backward
 
 \paragraph{Conclusion:}
 With impassable obstacles, A* becomes the clearly superior choice as it's the only algorithm guaranteeing both solution completeness and cost optimality.
-
+\newpage
 % ============================================
 % APPENDIX
 % ============================================
-\newpage
 \appendix
 \section{Source Code Documentation}
 
@@ -465,7 +457,11 @@ The implementation consists of 5 main Python modules:
 
 \noindent Additionally, \texttt{run\_experiments.py} automates performance testing on random maps.
 
+% ============================================
+% STATE.PY
+% ============================================
 \subsection{State Representation (\texttt{state.py})}
+
 \paragraph{Purpose:} Defines the state space representation using an immutable dataclass.
 
 \paragraph{Key design decisions:}
@@ -475,7 +471,12 @@ The implementation consists of 5 main Python modules:
     \item Compact \texttt{\_\_str\_\_}: Human-readable output for debugging/traces
 \end{itemize}
 
+
+% ============================================
+% NODE.PY
+% ============================================
 \subsection{Search Node (\texttt{node.py})}
+
 \paragraph{Purpose:} Represents nodes in the search tree with parent pointers for path reconstruction.
 
 \paragraph{Key attributes:}
@@ -492,66 +493,37 @@ The implementation consists of 5 main Python modules:
     \item \texttt{path()}: Traces parent pointers to root, returns solution path
     \item \texttt{\_\_lt\_\_}: Dummy comparison for heap tie-breaking (uses counter instead)
 \end{itemize}
-\newpage
-\subsection{State and Node Classes}
-\begin{lstlisting}
-from dataclasses import dataclass
-from state import State
 
-@dataclass(frozen=True, slots=True)
-class State:
-    x: int; y: int; o: int
-    def __str__(self): return f"({self.x}, {self.y}, {self.o})"
-
-@dataclass(slots=True)
-class Node:
-    state: State; parent: "Node | None"; op: str; g: int; depth: int
-    def path(self):
-        node, rev = self, []
-        while node: rev.append((node.state, node.g, node.depth, node.op)); node = node.parent
-        return list(reversed(rev))
-    def __lt__(self, other): return False
-\end{lstlisting}
-
+% ============================================
+% PROBLEM.PY
+% ============================================
 \subsection{Problem Specification (\texttt{problem.py})}
+
 \paragraph{Purpose:} Centralizes problem definition: successor generation, goal testing, and map I/O.
 
 \paragraph{Key components:}
 \begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
     \item \texttt{MOVES}: Global array mapping orientations to $(\Delta x, \Delta y)$ displacements
     \item \texttt{load\_map()}: Parses map file (dimensions, terrain matrix, start/goal states)
-    \item \texttt{successors()}: Generates valid successors in fixed R→M→L order
+    \item \texttt{successors()}: Generates valid successors in fixed R$\to$M$\to$L order
     \item \texttt{is\_goal()}: Checks goal satisfaction (handles orientation wildcard)
 \end{itemize}
 
 \paragraph{Design rationale:}
 Centralizing \texttt{successors()} ensures all algorithms (BFS, DFS, A*) explore in consistent order, enabling fair comparison.
 
-\subsection{Problem Specification Code}
-\begin{lstlisting}
-MOVES = [(-1,0), (-1,1), (0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1)]
-
-def successors(state: State, matrix):
-    rows, cols = len(matrix), len(matrix[0])
-    x, y, o = state.x, state.y, state.o
-    succs = [("rotate_right", State(x, y, (o+1)%8), 1)]
-    dx, dy = MOVES[o]; nx, ny = x+dx, y+dy
-    if 0<=nx<rows and 0<=ny<cols:
-        succs.append(("move", State(nx, ny, o), matrix[nx][ny]))
-    succs.append(("rotate_left", State(x, y, (o-1)%8), 1))
-    return succs
-
-def is_goal(state: State, goal: State):
-    return (state.x == goal.x and state.y == goal.y) if goal.o == 8 else state == goal
-\end{lstlisting}
-
+% ============================================
+% SEARCH.PY - BFS
+% ============================================
 \subsection{Breadth-First Search (\texttt{search.py})}
+
 \paragraph{Implementation highlights:}
 \begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
     \item Uses \texttt{collections.deque} for efficient $O(1)$ append/popleft
     \item \texttt{frontier\_set} provides $O(1)$ duplicate checking (avoids linear search)
     \item \texttt{explored} set prevents state re-expansion
     \item Goal check on generation (not expansion) for early termination
+    \item Verbose mode provides step-by-step execution trace
 \end{itemize}
 
 \paragraph{Complexity:}
@@ -560,33 +532,11 @@ def is_goal(state: State, goal: State):
     \item Space: $O(b^d)$ for frontier storage
 \end{itemize}
 
-\subsection{BFS Implementation}
-\begin{lstlisting}
-from collections import deque
-
-def bfs(start: State, goal: State, matrix, verbose=False):
-    start_node = Node(start, None, "START", 0, 0)
-    if is_goal(start, goal): return start_node.path(), [start], []
-    
-    frontier = deque([start_node])
-    frontier_set, explored = {start}, set()
-    
-    while frontier:
-        node = frontier.popleft(); frontier_set.discard(node.state)
-        if node.state in explored: continue
-        explored.add(node.state)
-        
-        for op, nxt, cost in successors(node.state, matrix):
-            if nxt in explored or nxt in frontier_set: continue
-            child = Node(nxt, node, op, node.g+cost, node.depth+1)
-            if is_goal(child.state, goal):
-                return child.path(), list(explored), [n.state for n in frontier]
-            frontier.append(child); frontier_set.add(nxt)
-    
-    return None, list(explored), [n.state for n in frontier]
-\end{lstlisting}
-
+% ============================================
+% SEARCH.PY - A*
+% ============================================
 \subsection{A* Search (\texttt{search.py})}
+
 \paragraph{Implementation highlights:}
 \begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
     \item Uses \texttt{heapq} for priority queue (min-heap by $f(n) = g(n) + h(n)$)
@@ -597,7 +547,7 @@ def bfs(start: State, goal: State, matrix, verbose=False):
 \end{itemize}
 
 \paragraph{Heuristic function:}
-Euclidean distance + minimum rotation cost. Fast $O(1)$ computation per state.
+Euclidean distance + minimum rotation cost. Admissible and consistent. Fast $O(1)$ computation per state.
 
 \paragraph{Complexity:}
 \begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
@@ -605,42 +555,35 @@ Euclidean distance + minimum rotation cost. Fast $O(1)$ computation per state.
     \item Space: $O(|V|)$ for frontier and explored sets
 \end{itemize}
 
-\subsection{A* Implementation}
-\begin{lstlisting}
-import math, heapq, itertools
+% ============================================
+% MAIN.PY
+% ============================================
+\subsection{Main Program (\texttt{main.py})}
 
-def heuristic(state: State, goal: State):
-    dx, dy = goal.x - state.x, goal.y - state.y
-    euclid = math.sqrt(dx*dx + dy*dy)
-    if goal.o == 8: return euclid
-    do = abs(goal.o - state.o) % 8
-    return euclid + min(do, 8-do)
+\paragraph{Purpose:} Command-line interface for running search algorithms on map files.
 
-def astar(start: State, goal: State, matrix, verbose=False):
-    counter = itertools.count()
-    start_node = Node(start, None, "START", 0, 0)
-    frontier = []; heapq.heappush(frontier, (heuristic(start, goal), next(counter), start_node))
-    frontier_best, explored = {start: 0}, {}
-    
-    while frontier:
-        f_curr, _, node = heapq.heappop(frontier)
-        if frontier_best.get(node.state) != node.g: continue
-        del frontier_best[node.state]
-        if node.state in explored: continue
-        explored[node.state] = node.g
-        if is_goal(node.state, goal):
-            return node.path(), list(explored.keys()), list(frontier_best.keys())
-        
-        for op, nxt, cost in successors(node.state, matrix):
-            if nxt in explored: continue
-            g_new = node.g + cost
-            if g_new < frontier_best.get(nxt, float('inf')):
-                child = Node(nxt, node, op, g_new, node.depth+1)
-                f_new = g_new + heuristic(nxt, goal)
-                heapq.heappush(frontier, (f_new, next(counter), child))
-                frontier_best[nxt] = g_new
-    
-    return None, list(explored.keys()), list(frontier_best.keys())
-\end{lstlisting}
+\paragraph{Features:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Accepts algorithm choice (bfs, dfs, astar) via command line
+    \item Optional verbose mode for detailed execution traces
+    \item Outputs solution path with node details
+    \item Reports explored and frontier statistics
+\end{itemize}
+
+% ============================================
+% RUN_EXPERIMENTS.PY
+% ============================================
+\subsection{Experiment Automation (\texttt{run\_experiments.py})}
+
+\paragraph{Purpose:} Automates performance testing on randomly generated maps.
+
+\paragraph{Features:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item Generates random maps of configurable sizes (3$\times$3, 5$\times$5, 7$\times$7, 9$\times$9)
+    \item Runs all three algorithms (BFS, DFS, A*) on each map
+    \item Collects statistics: depth, cost, nodes explored, frontier size
+    \item Averages results over multiple trials (default: 5 per size)
+    \item Outputs formatted LaTeX tables for report integration
+\end{itemize}
 
 \end{document}
