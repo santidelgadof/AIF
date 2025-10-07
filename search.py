@@ -46,15 +46,14 @@ def bfs(start: State, goal: State, matrix, verbose: bool = False):
                 continue
 
             child = Node(nxt, node, op, node.g + cost, node.depth + 1)
+            frontier.append(child)
+            frontier_set.add(nxt)
+            generated.append((child.op, child.state))
 
             if is_goal(child.state, goal):
                 if verbose:
                     print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
                 return child.path(), list(explored), [n.state for n in frontier]
-
-            frontier.append(child)
-            frontier_set.add(nxt)
-            generated.append((child.op, child.state))
 
         if verbose:
             if generated:
@@ -110,13 +109,13 @@ def dfs(start: State, goal: State, matrix, verbose: bool = False):
                 continue
 
             child = Node(nxt, node, op, node.g + cost, node.depth + 1)
+            frontier.append(child)
+            frontier_set.add(nxt)
+
             if is_goal(child.state, goal):
                 if verbose:
                     print(f"  Meta descubierta -> {child.state} (g={child.g}, d={child.depth})\n")
                 return child.path(), list(explored), [n.state for n in frontier]
-
-            frontier.append(child)
-            frontier_set.add(nxt)
 
         if verbose:
             generated = []

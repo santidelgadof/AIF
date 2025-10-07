@@ -27,6 +27,8 @@ if __name__ == "__main__":
     if path:
         # Nodo 0
         state0, g0, d0, op0 = path[0]
+        if verbose:
+            print("\n\n-------------------------------------------------\n\n")
         print(f"\nNode 0 (starting node)")
         if algo == "astar":
             h0 = heuristic(state0, goal)
