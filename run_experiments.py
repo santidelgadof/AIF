@@ -122,7 +122,6 @@ def run_experiments(map_sizes=[3, 5, 7, 9], num_trials=5):
             
             # Load map
             rows, cols, matrix, start, goal = load_map(map_file)
-            print(f"  Map: Start={start}, Goal={goal}")
             
             # Run each algorithm
             for algo_name in ['bfs', 'dfs', 'astar']:
