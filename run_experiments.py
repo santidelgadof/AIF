@@ -16,8 +16,7 @@ from problem import load_map, State
 from search import bfs, dfs, astar
 
 
-def generate_random_map(n, output_file, start_pos=None, start_orientation=None,
-                       goal_pos=None, goal_orientation=8, 
+def generate_random_map(n, output_file, start_pos=(0, 0), goal_pos=None,
                        min_hardness=1, max_hardness=9):
     """
     Generate a random map and save to file.
@@ -25,28 +24,13 @@ def generate_random_map(n, output_file, start_pos=None, start_orientation=None,
     Args:
         n: Map size (n x n)
         output_file: Path to save the map
-        start_pos: Starting position (x, y), if None will be random
-        start_orientation: Starting orientation (0-7), if None will be random
-                          0=N, 1=NE, 2=E, 3=SE, 4=S, 5=SW, 6=W, 7=NW
-        goal_pos: Goal position (x, y), if None will be random
-        goal_orientation: Goal orientation (0-7 or 8=any), default 8
+        start_pos: Starting position (x, y)
+        goal_pos: Goal position (x, y), defaults to (n-1, n-1)
         min_hardness: Minimum cell hardness
         max_hardness: Maximum cell hardness
     """
-    # Generate random start position if not provided
-    if start_pos is None:
-        start_pos = (random.randint(0, n-1), random.randint(0, n-1))
-    
-    # Generate random start orientation if not provided (0-7)
-    if start_orientation is None:
-        start_orientation = random.randint(0, 7)
-    
-    # Generate random goal position if not provided (different from start)
     if goal_pos is None:
-        goal_pos = (random.randint(0, n-1), random.randint(0, n-1))
-        # Ensure goal is different from start
-        while goal_pos == start_pos:
-            goal_pos = (random.randint(0, n-1), random.randint(0, n-1))
+        goal_pos = (n-1, n-1)
     
     with open(output_file, 'w') as f:
         # Write dimensions
@@ -58,11 +42,11 @@ def generate_random_map(n, output_file, start_pos=None, start_orientation=None,
                    for _ in range(n)]
             f.write(" ".join(row) + "\n")
         
-        # Write start position with orientation
-        f.write(f"{start_pos[0]} {start_pos[1]} {start_orientation}\n")
+        # Write start position (orientation 0 = North)
+        f.write(f"{start_pos[0]} {start_pos[1]} 0\n")
         
         # Write goal position (orientation 8 = any)
-        f.write(f"{goal_pos[0]} {goal_pos[1]} {goal_orientation}\n")
+        f.write(f"{goal_pos[0]} {goal_pos[1]} 8\n")
 
 
 def run_algorithm(algo_name, start, goal, matrix):
@@ -105,7 +89,7 @@ def run_algorithm(algo_name, start, goal, matrix):
         return None
 
 
-def run_experiments(map_sizes=[3, 5, 7, 9], num_trials=10):
+def run_experiments(map_sizes=[3, 5, 7, 9], num_trials=5):
     """
     Run experiments for all map sizes and algorithms.
     
@@ -138,6 +122,7 @@ def run_experiments(map_sizes=[3, 5, 7, 9], num_trials=10):
             
             # Load map
             rows, cols, matrix, start, goal = load_map(map_file)
+            print(f"  Map: Start={start}, Goal={goal}")
             
             # Run each algorithm
             for algo_name in ['bfs', 'dfs', 'astar']:
@@ -197,9 +182,9 @@ def format_latex_table(size, results):
 """
     
     for algo_name, display_name in [
-        ('bfs', 'BFS'),
-        ('dfs', 'DFS'),
-        ('astar', 'A*')
+        ('bfs', 'Breadth-First Search'),
+        ('dfs', 'Depth-First Search'),
+        ('astar', 'A* (Euclidean + Rotation)')
     ]:
         r = results[algo_name]
         latex += f"{display_name} & {r['depth']:.1f} & {r['cost']:.1f} & {r['explored']:.1f} & {r['frontier']:.1f} \\\\\n"
@@ -221,7 +206,7 @@ def main():
     print("\nStarting experiments...")
     print("This may take a few minutes depending on map sizes.\n")
     
-    results = run_experiments(map_sizes=[3, 5, 7, 9], num_trials=10)
+    results = run_experiments(map_sizes=[3, 5, 7, 9], num_trials=5)
     
     # Print summary
     print("\n" + "=" * 60)
@@ -229,7 +214,7 @@ def main():
     print("=" * 60)
     
     for size in [3, 5, 7, 9]:
-        print(f"\n{size}x{size} Maps (averaged over 10 trials):")
+        print(f"\n{size}x{size} Maps (averaged over 5 trials):")
         print(f"{'Algorithm':<30} {'d':>6} {'g':>8} {'#E':>8} {'#F':>8}")
         print("-" * 60)
         
@@ -247,6 +232,7 @@ def main():
     print("LATEX TABLES FOR REPORT")
     print("=" * 60)
     print("\nCopy the following tables into your report.tex file:")
+    print("(Replace the existing placeholder tables in Section 4.2)\n")
     
     for size in [3, 5, 7, 9]:
         print(format_latex_table(size, results[size]))
