@@ -197,9 +197,9 @@ def format_latex_table(size, results):
 """
     
     for algo_name, display_name in [
-        ('bfs', 'Breadth-First Search'),
-        ('dfs', 'Depth-First Search'),
-        ('astar', 'A* (Euclidean + Rotation)')
+        ('bfs', 'BFS'),
+        ('dfs', 'DFS'),
+        ('astar', 'A*')
     ]:
         r = results[algo_name]
         latex += f"{display_name} & {r['depth']:.1f} & {r['cost']:.1f} & {r['explored']:.1f} & {r['frontier']:.1f} \\\\\n"
@@ -247,7 +247,6 @@ def main():
     print("LATEX TABLES FOR REPORT")
     print("=" * 60)
     print("\nCopy the following tables into your report.tex file:")
-    print("(Replace the existing placeholder tables in Section 4.2)\n")
     
     for size in [3, 5, 7, 9]:
         print(format_latex_table(size, results[size]))
