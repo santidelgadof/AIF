@@ -3,6 +3,7 @@
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{listings}
@@ -54,8 +55,6 @@
     {\large Antonio Vila Leis}\\[0.2cm]
     {\large Santiago Delgado Ferreiro}\\[1.5cm]
     
-    {\large\textbf{Practice Group:} [Group Number]}\\[1.5cm]
-    \vfill
     {\large October 2025}
 \end{titlepage}
 
@@ -312,6 +311,28 @@ A* & 13.0 & 25.8 & 313.8 & 79.8 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
+\subsubsection{Visual Comparison: Extreme Case Analysis}
+
+To clearly illustrate the fundamental differences between blind and heuristic search strategies, we designed an extreme test case with deliberately contrasting terrain costs. Figure~\ref{fig:comparison_large} shows the paths found by BFS and A* on this challenging scenario.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{comparison_large.png}
+\caption{Path comparison on an extreme case map. \textbf{Left:} BFS solution. \textbf{Right:} A* solution. The map was intentionally designed with high-cost cells (darker colors = higher hardness values, up to 9) positioned along the most direct geometric path. Notice how BFS maintains its route through the expensive terrain (following minimum depth), while A* intelligently deviates around these obstacles, selecting a path through lower-cost cells despite the additional movements required. This behavior confirms A*'s cost-awareness and demonstrates the strategic advantage of heuristic guidance in minimizing total path cost.}
+\label{fig:comparison_large}
+\end{figure}
+
+\paragraph{Key Observations:}
+\begin{itemize}[leftmargin=1.5cm,itemsep=0.1em]
+    \item \textbf{BFS behavior:} Commits to the shortest path in terms of number of actions (depth), completely ignoring terrain costs. The algorithm traverses high-hardness cells because they lie on the direct route.
+    \item \textbf{A* behavior:} Actively avoids expensive cells, taking detours through lower-cost terrain. The Euclidean heuristic combined with accumulated cost $g(n)$ successfully guides the search to minimize total path cost, even if this requires additional movements.
+    \item \textbf{Cost vs. Depth trade-off:} A* may produce paths with greater depth ($d$) but significantly lower cost ($g$), confirming its optimality guarantee with respect to path cost rather than path length.
+\end{itemize}
+
+This visual demonstration underscores why A* is the preferred algorithm for cost-sensitive navigation tasks, while BFS is only optimal when all action costs are uniform.
+
 
 % ============================================
 % DISCUSSION
