@@ -28,8 +28,10 @@ if __name__ == "__main__":
         # Node 0
         state0, g0, d0, op0 = path[0]
         if verbose:
-            print("\n\n-------------------------------------------------\n\n")
+            print("\n-------------------------------------------------\n")
+        print(f"Node(depth, cost, operator, h, state)" if algo == "astar" else f"\nNode(depth, cost, operator, state)")
         print(f"\nNode 0 (starting node)")
+
         if algo == "astar":
             h0 = heuristic(state0, goal)
             print(f"  ({d0}, {g0}, {op0}, {h0:.2f}, {state0})")

@@ -16,7 +16,7 @@ def bfs(start: State, goal: State, matrix, verbose: bool = False):
     """
     start_node = Node(start, None, "START", 0, 0)
 
-    # Trivial case: start is already goal
+    # Start is already goal
     if is_goal(start, goal):
         if verbose:
             print(f"GOAL (start) reached: {start} | cost=0 | depth=0")
@@ -105,8 +105,14 @@ def dfs(start: State, goal: State, matrix, verbose: bool = False):
         # Successors R, M, L -> stack in reverse order
         succs = list(successors(node.state, matrix))
         for op, nxt, cost in reversed(succs):
-            if nxt in explored or nxt in frontier_set:
+            # If already explored, skip it
+            if nxt in explored:
                 continue
+
+            # If already in frontier, remove it to reinsert
+            if nxt in frontier_set:
+                frontier = [n for n in frontier if n.state != nxt]
+                frontier_set.remove(nxt)
 
             child = Node(nxt, node, op, node.g + cost, node.depth + 1)
             frontier.append(child)

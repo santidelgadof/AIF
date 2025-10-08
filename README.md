@@ -6,7 +6,6 @@
 ## 📋 Table of Contents
 
 - [Overview](#overview)
-- [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -15,7 +14,6 @@
 - [Map File Format](#map-file-format)
 - [Algorithms](#algorithms)
 - [Output Format](#output-format)
-- [Examples](#examples)
 - [Contributing](#contributing)
 
 ---
@@ -26,7 +24,7 @@ This project implements three classic search algorithms to solve a robot navigat
 
 - **Breadth-First Search (BFS)**: Explores level by level, guarantees shortest path in terms of number of actions
 - **Depth-First Search (DFS)**: Explores depth-first, may find solutions faster but not optimal
-- **A* Search**: Uses heuristic (Euclidean distance + rotation cost) to find optimal paths efficiently
+- **A Star Search**: Uses heuristic (Euclidean distance + rotation cost) to find optimal paths efficiently
 
 ### Problem Definition
 
@@ -40,24 +38,6 @@ This project implements three classic search algorithms to solve a robot navigat
 - `move`: Move forward in current orientation (cost = terrain hardness)
 
 **Goal:** Navigate from start position to goal position, optionally matching orientation.
-
----
-
-## 📁 Project Structure
-
-```
-AIF/
-├── state.py              # State representation (immutable dataclass)
-├── node.py               # Search tree node with path reconstruction
-├── problem.py            # Problem specification (successors, goal test, map loading)
-├── search.py             # BFS, DFS, and A* implementations
-├── main.py               # Command-line interface
-├── run_experiments.py    # Automated performance testing
-├── exampleMap.txt        # Sample map file
-├── experiment_results.txt # Results from automated experiments
-├── report.tex            # LaTeX report with full documentation
-└── README.md             # This file
-```
 
 ---
 
@@ -200,23 +180,17 @@ Map files are plain text with the following structure:
 - **Data Structure:** Queue (FIFO)
 - **Strategy:** Explores all nodes at depth `d` before depth `d+1`
 - **Guarantees:** Shortest path in terms of number of actions
-- **Time Complexity:** O(|V| + |E|)
-- **Space Complexity:** O(b^d)
 
 ### Depth-First Search (DFS)
 - **Data Structure:** Stack (LIFO)
 - **Strategy:** Explores as deep as possible before backtracking
 - **Guarantees:** None (may find non-optimal solutions)
-- **Time Complexity:** O(b^m)
-- **Space Complexity:** O(b·m)
 
 ### A* Search
 - **Data Structure:** Priority queue (min-heap)
 - **Strategy:** Expands nodes with lowest f(n) = g(n) + h(n)
 - **Heuristic:** Euclidean distance + minimum rotation cost
 - **Guarantees:** Optimal solution (heuristic is admissible)
-- **Time Complexity:** O(|E| log |V|)
-- **Space Complexity:** O(|V|)
 
 ---
 
@@ -273,76 +247,6 @@ Format: `(depth, cost, operator, heuristic, state)`
 
 ---
 
-## 📝 Examples
-
-### Example 1: Simple 3×3 Map
-
-**Map file (`simple.txt`):**
-```
-3 3
-1 1 1
-1 1 1
-1 1 1
-0 0 0
-2 2 8
-```
-
-**Run BFS:**
-```bash
-python main.py simple.txt bfs
-```
-
-**Expected output:**
-```
-Node 0 (starting node)
-  (0, 0, START, (0, 0, 0))
-
-Operator 1
-  move
-Node 1
-  (1, 1, move, (1, 0, 0))
-
-Operator 2
-  move
-Node 2
-  (2, 1, move, (2, 0, 0))
-
-Operator 3
-  rotate_right
-Node 3
-  (3, 1, rotate_right, (2, 0, 1))
-
-Operator 4
-  move
-Node 4
-  (4, 3, move, (2, 1, 1))
-
-Operator 5
-  move
-Node 5
-  (5, 4, move, (2, 2, 1))
-
-Total number of items in explored list: 18
-Total number of items in frontier: 7
-```
-
-### Example 2: Compare All Algorithms
-
-```bash
-# Run all three algorithms and compare
-python main.py exampleMap.txt bfs
-python main.py exampleMap.txt dfs
-python main.py exampleMap.txt astar
-```
-
-### Example 3: Debug with Verbose Mode
-
-```bash
-python main.py exampleMap.txt astar -v
-```
-
----
-
 ## 🧪 Testing
 
 To verify correctness, compare algorithm outputs:
@@ -375,15 +279,8 @@ For questions or suggestions, please contact the authors.
 
 ## 📚 References
 
-- Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.)
 - Lab assignment: `lab1-AIF-2025.pdf`
 - Full implementation details: See `report.tex` (LaTeX report)
-
----
-
-## 📄 License
-
-MIT License - See repository for details.
 
 ---
 
