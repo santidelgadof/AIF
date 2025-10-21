@@ -1,0 +1,46 @@
+# SPARQL Query 2: Personas por altura (1.8-2.3m) nacidas después de 1980
+# Endpoint: https://dbpedia.org/snorql/
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?person ?name ?height ?birthDate
+WHERE {
+  ?person a dbo:Person .
+  ?person rdfs:label ?name .
+  ?person dbo:height ?height .
+  ?person dbo:birthDate ?birthDate .
+  
+  FILTER (lang(?name) = 'en')
+  FILTER (?height >= 1.8 && ?height <= 2.3)
+  FILTER (YEAR(?birthDate) > 1980)
+}
+ORDER BY ?birthDate
+LIMIT 10
+
+# EXPLICACIÓN:
+# - SELECT DISTINCT ?person ?name ?height ?birthDate: Selecciona personas únicas con sus datos
+# - ?person a dbo:Person: Filtra solo entidades de tipo Person
+# - ?person rdfs:label ?name: Obtiene el nombre de la persona
+# - ?person dbo:height ?height: Obtiene la altura de la persona
+# - ?person dbo:birthDate ?birthDate: Obtiene la fecha de nacimiento
+# - FILTER (?height >= 1.8 && ?height <= 2.3): Filtra alturas entre 1.8 y 2.3 metros
+# - FILTER (YEAR(?birthDate) > 1980): Filtra personas nacidas después de 1980
+# - ORDER BY ?birthDate: Ordena los resultados por fecha de nacimiento (ascendente)
+# - LIMIT 10: Limita los resultados a 10 personas
+
+# NOTA: En DBpedia, las alturas pueden estar en diferentes unidades
+# Si no obtienes resultados, prueba variaciones como:
+# - Usar dbp:height en lugar de dbo:height
+# - Ajustar rangos de altura
+# - Verificar el formato de datos en DBpedia
+
+# INSTRUCCIONES:
+# 1. Ir a https://dbpedia.org/snorql/
+# 2. Copiar y pegar la query (sin los comentarios #)
+# 3. Ejecutar la query
+# 4. Si no hay resultados, ajustar los filtros
+# 5. Capturar los resultados
+# 6. Explicar la lógica en el informe

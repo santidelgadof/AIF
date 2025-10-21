@@ -1,0 +1,35 @@
+# SPARQL Query 1: Artistas que empiezan con "Mado"
+# Endpoint: https://dbpedia.org/sparql/
+# Endpoint URL: http://dbpedia.org
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?artist ?name
+WHERE {
+  ?artist a dbo:Artist .
+  ?artist rdfs:label ?name .
+  FILTER (lang(?name) = 'en')
+  FILTER (STRSTARTS(?name, "Mado"))
+}
+LIMIT 10
+
+# EXPLICACIÓN:
+# - SELECT DISTINCT ?artist ?name: Selecciona artistas únicos y sus nombres
+# - ?artist a dbo:Artist: Filtra solo entidades de tipo Artist
+# - ?artist rdfs:label ?name: Obtiene el nombre (etiqueta) del artista
+# - FILTER (lang(?name) = 'en'): Filtra solo nombres en inglés
+# - FILTER (STRSTARTS(?name, "Mado")): Filtra nombres que empiezan con "Mado"
+# - LIMIT 10: Limita los resultados a 10 artistas
+
+# RESULTADOS ESPERADOS:
+# Lista de 10 artistas cuyos nombres comienzan con "Mado"
+# Ejemplo: Madonna, Madona (si existen variantes), etc.
+
+# INSTRUCCIONES:
+# 1. Ir a https://dbpedia.org/sparql/
+# 2. Copiar y pegar la query (sin los comentarios #)
+# 3. Ejecutar la query
+# 4. Capturar los resultados
+# 5. Explicar la lógica en el informe
