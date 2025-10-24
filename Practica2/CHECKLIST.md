@@ -1,7 +1,7 @@
 # 🎯 Práctica 2: Ontologías - Guía Rápida
 
 **Fecha límite:** 29 Octubre 2025, 23:59  
-**Username WebProtégé:** __________ (¡Anótalo aquí!)
+**Username WebProtégé:** santi_david (¡Anótalo aquí!)
 
 ---
 
