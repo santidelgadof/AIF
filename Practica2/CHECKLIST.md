@@ -5,6 +5,11 @@
 
 ---
 
+** DUDAS **
+
+### seccion dos revisar
+
+
 ## 📋 CHECKLIST RÁPIDO
 
 ### PARTE 1: WebProtégé (Días 1-4)
@@ -132,3 +137,8 @@ Practica2/
 ---
 
 **¡Éxito con tu práctica!** 🚀
+
+
+
+
+
