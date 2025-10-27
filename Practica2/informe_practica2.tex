@@ -19,6 +19,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+
 % Configuración de página
 \geometry{
     top=2.5cm,
@@ -75,9 +76,6 @@
 
 % Título personalizado
 \title{
-    \vspace{-2cm}
-    \includegraphics[width=0.3\textwidth]{logo_universidad.png}\\ % Añadir logo si está disponible
-    \vspace{1cm}
     \textbf{Fundamentos de Inteligencia Artificial}\\
     \Large Práctica 2: Ontologías\\
     \large Master en Inteligencia Artificial\\
@@ -92,18 +90,16 @@
     \texttt{david.carballo@estudiante.uam.es}
 }
 
-\date{27 de Octubre de 2025}
+\date{Octubre de 2025}
 
 \begin{document}
 
 % Portada
 \maketitle
-\thispagestyle{empty}
 
 \vfill
 
 \begin{center}
-\textbf{Grupo de Prácticas:} [Completar número de grupo]\\
 \vspace{0.5cm}
 \textbf{Username WebProtégé:} santi\_david
 \end{center}
@@ -274,17 +270,18 @@ La jerarquía creada es la siguiente:
 
 \begin{verbatim}
 Allergens
-├── Peanut
-├── TreeNuts
-├── Milk
-├── Egg
-├── Fish
-├── Shellfish
-├── Soy
-├── Wheat
-├── Sesame
-└── Celery
+|- Peanut
+|- TreeNuts
+|- Milk
+|- Egg
+|- Fish
+|- Shellfish
+|- Soy
+|- Wheat
+|- Sesame
+`- Celery
 \end{verbatim}
+
 
 \subsubsection{Evidencia Gráfica}
 
@@ -565,7 +562,6 @@ LIMIT 10
     \label{fig:query1_results}
 \end{figure}
 
-% TODO: Completar con los resultados reales de la ejecución
 \begin{table}[H]
     \centering
     \caption{Artistas que empiezan con ``Mado''}
@@ -574,19 +570,20 @@ LIMIT 10
         \hline
         \textbf{Artist URI} & \textbf{Name} \\
         \hline
-        [Completar con datos reales] & Madonna \\
-        [Completar con datos reales] & [Nombre 2] \\
-        [Completar con datos reales] & [Nombre 3] \\
-        [Completar con datos reales] & [Nombre 4] \\
-        [Completar con datos reales] & [Nombre 5] \\
-        [Completar con datos reales] & [Nombre 6] \\
-        [Completar con datos reales] & [Nombre 7] \\
-        [Completar con datos reales] & [Nombre 8] \\
-        [Completar con datos reales] & [Nombre 9] \\
-        [Completar con datos reales] & [Nombre 10] \\
+        \url{http://dbpedia.org/resource/Mado_Maurin} & Mado Maurin \\
+        \url{http://dbpedia.org/resource/Madoka_Asahina} & Madoka Asahina \\
+        \url{http://dbpedia.org/resource/Madoka_Sugai} & Madoka Sugai \\
+        \url{http://dbpedia.org/resource/Madoka_Takagi} & Madoka Takagi \\
+        \url{http://dbpedia.org/resource/Madoka_Yonezawa} & Madoka Yonezawa \\
+        \url{http://dbpedia.org/resource/Madokoro_Akutagawa_Saori} & Madokoro Akutagawa Saori \\
+        \url{http://dbpedia.org/resource/Madonna_Fitta_de_Milano} & Madonna Fitta de Milano \\
+        \url{http://dbpedia.org/resource/Madonna_Tassi} & Madonna Tassi \\
+        \url{http://dbpedia.org/resource/Madonna_Wayne_Gacy} & Madonna Wayne Gacy \\
+        \url{http://dbpedia.org/resource/Madoka_Kimura} & Madoka Kimura \\
         \hline
     \end{tabular}
 \end{table}
+
 
 \subsubsection{Análisis de Resultados}
 
@@ -675,28 +672,30 @@ LIMIT 10
     \label{fig:query2_results}
 \end{figure}
 
-% TODO: Completar con datos reales
 \begin{table}[H]
     \centering
-    \caption{Personas por altura (1.8-2.3m) nacidas después de 1980}
+    \caption{Personas por altura (1.8–2.3 m) nacidas después de 1980}
     \label{tab:query2_results}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{|l|l|c|c|}
         \hline
         \textbf{Person URI} & \textbf{Name} & \textbf{Height (m)} & \textbf{Birth Date} \\
         \hline
-        [URI 1] & [Nombre 1] & [Altura 1] & [Fecha 1] \\
-        [URI 2] & [Nombre 2] & [Altura 2] & [Fecha 2] \\
-        [URI 3] & [Nombre 3] & [Altura 3] & [Fecha 3] \\
-        [URI 4] & [Nombre 4] & [Altura 4] & [Fecha 4] \\
-        [URI 5] & [Nombre 5] & [Altura 5] & [Fecha 5] \\
-        [URI 6] & [Nombre 6] & [Altura 6] & [Fecha 6] \\
-        [URI 7] & [Nombre 7] & [Altura 7] & [Fecha 7] \\
-        [URI 8] & [Nombre 8] & [Altura 8] & [Fecha 8] \\
-        [URI 9] & [Nombre 9] & [Altura 9] & [Fecha 9] \\
-        [URI 10] & [Nombre 10] & [Altura 10] & [Fecha 10] \\
+        \url{http://dbpedia.org/resource/Hüzeyfe_Doğan} & Hüzeyfe Doğan & 1.81 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Ju_Ho-jin} & Ju Ho-jin & 1.82 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Vladimir_Loginov_(ice_hockey)} & Vladimir Loginov (ice hockey) & 1.8288 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Marek_Tomica} & Marek Tomica & 1.8288 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Mladen_Petrić} & Mladen Petrić & 1.85 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Moumouni_Dagano} & Moumouni Dagano & 1.86 & 1981-01-01 \\
+        \url{http://dbpedia.org/resource/Zenon_Konopka} & Zenon Konopka & 1.8288 & 1981-01-02 \\
+        \url{http://dbpedia.org/resource/Alexander_Krysanov} & Alexander Krysanov & 1.8288 & 1981-01-02 \\
+        \url{http://dbpedia.org/resource/Ivan_Babić_(footballer,_born_1981)} & Ivan Babić (footballer, born 1981) & 1.83 & 1981-01-02 \\
+        \url{http://dbpedia.org/resource/Bill_Nicholls_(Australian_footballer)} & Bill Nicholls (Australian footballer) & 1.84 & 1981-01-02 \\
         \hline
     \end{tabular}
+    } % fin resizebox
 \end{table}
+
 
 \subsubsection{Análisis de Resultados}
 
@@ -797,25 +796,28 @@ LIMIT 7
     \label{fig:query3_results}
 \end{figure}
 
-% TODO: Completar con datos reales
 \begin{table}[H]
     \centering
     \caption{Personas por altura/peso y número de clubes asociados}
     \label{tab:query3_results}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{|l|l|c|}
         \hline
         \textbf{Person URI} & \textbf{Name} & \textbf{Number of Clubs} \\
         \hline
-        [URI 1] & [Nombre 1] & [N1] \\
-        [URI 2] & [Nombre 2] & [N2] \\
-        [URI 3] & [Nombre 3] & [N3] \\
-        [URI 4] & [Nombre 4] & [N4] \\
-        [URI 5] & [Nombre 5] & [N5] \\
-        [URI 6] & [Nombre 6] & [N6] \\
-        [URI 7] & [Nombre 7] & [N7] \\
+        \url{http://dbpedia.org/resource/Ben_Lawson_(basketball)} & Ben Lawson (basketball) & 0 \\
+        \url{http://dbpedia.org/resource/Blair_Rasmussen} & Blair Rasmussen & 0 \\
+        \url{http://dbpedia.org/resource/Bob_Kurland} & Bob Kurland & 0 \\
+        \url{http://dbpedia.org/resource/Brian_Zoubek} & Brian Zoubek & 0 \\
+        \url{http://dbpedia.org/resource/John_Shasky} & John Shasky & 0 \\
+        \url{http://dbpedia.org/resource/Jon_Kreft} & Jon Kreft & 0 \\
+        \url{http://dbpedia.org/resource/Jordan_Dickerson} & Jordan Dickerson & 0 \\
         \hline
     \end{tabular}
+    }% fin resizebox
 \end{table}
+
+
 
 \subsubsection{Análisis de Resultados}
 
