@@ -1,0 +1,4295 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://sbmi.uth.edu/ontology/offf#"
+     xml:base="http://sbmi.uth.edu/ontology/offf"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:webprotege="http://webprotege.stanford.edu/">
+    <owl:Ontology rdf:about="http://sbmi.uth.edu/ontology/offf">
+        <terms:contributor>Chidinma Onye</terms:contributor>
+        <terms:creator>Jing Wang, Tuan Amith, Cui Tao</terms:creator>
+        <terms:description>an ontology of nutritional information from major fast food companies</terms:description>
+        <terms:title>Ontology of Fast Food Facts (OFFF)</terms:title>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/contributor -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Influence -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Influence">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:comment xml:lang="en">Nutritional component Influence health outcomes</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#causedBy -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#causedBy">
+        <owl:inverseOf rdf:resource="http://sbmi.uth.edu/ontology/offf#causes"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+        <rdfs:comment xml:lang="en">Health outcomes are caused by diet quality</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#causes -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#causes">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasAllergens -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasAllergens">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#NutritionalFact"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasDailyValue -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasDailyValue">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#hasValue"/>
+        <rdfs:comment xml:lang="en">Indicates the daily value of a nutritional component</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasIngredients -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasIngredients">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#NutritionalFact"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasNutritionalComponents -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasNutritionalComponents">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#NutritionalFact"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasNutritionalFact -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasNutritionalFact">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Food"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#NutritionalFact"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasPercentDailyValue -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasPercentDailyValue">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#hasValue"/>
+        <rdfs:comment xml:lang="en">Indicates the daily percentage value of a nutritional component in a food item</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#hasValue -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#hasValue">
+        <rdfs:comment xml:lang="en">Nutritional component has value</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#lowers -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#lowers">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Trans_Fat"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#HDL_Levels"/>
+        <rdfs:comment xml:lang="en">Excess trans fat lowers HDL Levels</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#offeredBy -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#offeredBy">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Restaurant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#raises -->
+
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/offf#raises">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Trans_Fat"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#LDL_Levels"/>
+        <rdfs:comment xml:lang="en">Excess trans fat raises LDL levels</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R2OmSyzoNrfyWYCoYdKJeO -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R2OmSyzoNrfyWYCoYdKJeO">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:label xml:lang="en">causedbyInfla</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RHuY63qQJJVRtPX6pfvJsi -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RHuY63qQJJVRtPX6pfvJsi">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:range rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:label xml:lang="en">causedByCondition</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Amount -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Amount">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Amount_gram -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Amount_gram">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Amount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Amount_milligram -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Amount_milligram">
+        <rdfs:subPropertyOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Amount"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#DailyValue -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#DailyValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dairy -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Dairy">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Egg -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Egg">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fish -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Fish">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Gluten -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Gluten">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#MSG -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#MSG">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peanuts -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Peanuts"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#PercentDailyValue -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#PercentDailyValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Shellfish -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Shellfish">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soy -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Soy">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Treenuts -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Treenuts">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Weight -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#Weight">
+        <rdfs:domain rdf:resource="http://sbmi.uth.edu/ontology/offf#Serving_Size_Data"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#apple -->
+
+    <owl:DatatypeProperty rdf:about="http://sbmi.uth.edu/ontology/offf#apple"/>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R91higWoJGgSJak9NJWmQFE -->
+
+    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R91higWoJGgSJak9NJWmQFE">
+        <rdfs:label xml:lang="en">hasAllergen</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCafAE1Hf18yOqVHD4duLF2 -->
+
+    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RCafAE1Hf18yOqVHD4duLF2">
+        <rdfs:label xml:lang="en">containsGluten</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Added_Sugar_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Added_Sugar_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sugar_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#All_Natural_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#All_Natural_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Allergens -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Americano -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Americano">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Annatto_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Annatto_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Bites -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Bites">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Apple_Slices"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Juice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Juice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Juice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Pecan_Chicken_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Pecan_Chicken_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Pecan_Chicken_Salad_Dressing -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Pecan_Chicken_Salad_Dressing">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Salad_Dressing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Pie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Pie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Pie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_Slices -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_Slices">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Apple_and_Cranberry_Chicken_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Apple_and_Cranberry_Chicken_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Applesauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Applesauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Asian_Beef_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Asian_Beef_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Breast_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Breast_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Asian_Noodle_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Asian_Noodle_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Asian_Seafood_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Asian_Seafood_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#BBQ_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#BBQ_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_Bagel -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_Bagel">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Bagel_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_Biscuit -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_Biscuit">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_McGriddles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Cheese_McGriddles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McGriddles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Swiss_Croissant -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Egg_and_Swiss_Croissant">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Croissant_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Jalapeno_Cheeseburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Jalapeno_Cheeseburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Jalapeno_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Jalapeno_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_Lettuce_and_Tomato_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_Lettuce_and_Tomato_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+        <skos:prefLabel>BLT Sandwich</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bacon_and_Cheese_Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bacon_and_Cheese_Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger_with_Bacon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Banana -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Banana">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Banana_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Banana_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Banana_Split -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Banana_Split">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Royal_Treats"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Barbecue_Cheeseburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Barbecue_Cheeseburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Bean_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Bean_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Beef_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Beef_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Beef_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Beef_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Beijing_Beef -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Beijing_Beef">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Beef_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Beta_Carotene_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Beta_Carotene_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Big_Breakfast -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Big_Breakfast">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Big_Breakfast_McDonald&apos;s"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Big_Breakfast_Hotcakes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Big_Breakfast_Hotcakes">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Big_Breakfast_McDonald&apos;s"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Big_Breakfast_with_Hotcakes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Big_Breakfast_with_Hotcakes">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Big_Breakfast"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Biscuit_and_Gravy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Biscuit_and_Gravy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Biscuit_with_Bacon -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Biscuit_with_Bacon">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Biscuit_with_Sausage -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Biscuit_with_Sausage">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Black_Pepper_Beef -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Black_Pepper_Beef">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Beef_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Black_Tea_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Black_Tea_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Blizzard_Treat -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Blizzard_Treat">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Blue_Raspberry_Slushie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Blue_Raspberry_Slushie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Slushie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Bacon -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Bacon">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Baconator -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Baconator">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Bacon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Bagel_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Bagel_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Burritos -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Burritos">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Oats_Item -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Oats_Item">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Platter -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Platter">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Platter_Whataburgers -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Platter_Whataburgers">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Platter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Breakfast_Sausage_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Breakfast_Sausage_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Burritos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Brown_Rice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Brown_Rice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Rice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Brownie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Brownie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Brownie_and_Oreo_Cupfection -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Brownie_and_Oreo_Cupfection">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Royal_Treats"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Buster_Bar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Buster_Bar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Bar"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Buttermilk_Crispy_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Buttermilk_Crispy_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Calcium -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Calcium">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Calories_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Calories_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Calories_Fat_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Calories_Fat_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Calories_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Canola_Oil_ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Canola_Oil_ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cappuccino -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cappuccino">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Cappuccino -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Cappuccino">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cappuccino"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Frappe -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Frappe">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Frappe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Latte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Latte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Macchiato -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Macchiato">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Macchiato"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Mocha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Mocha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mocha"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_MooLatte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_MooLatte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cold_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Caramel_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Caramel_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Carbohydrates_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Carbohydrates_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Carbonated_Water -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Carbonated_Water">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Water"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cheese_Curds -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cheese_Curds">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cheese_Rice_and_Bean_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cheese_Rice_and_Bean_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Bean_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cheese_ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cheese_ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cheeseburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cheeseburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cheesecake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cheesecake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_BLT_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_BLT_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Bacon_Ranch_Artisan-Style_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Bacon_Ranch_Artisan-Style_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Biscuit -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Biscuit">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_McNuggets -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_McNuggets">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Nuggets"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Noodle_Soup -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Noodle_Soup">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Noodles"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Nuggets -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Nuggets">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Chicken"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Rings -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Rings">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Strip -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Strip">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Chicken"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chicken_Strip_Basket -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chicken_Strip_Basket">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Chicken"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chili_Cheese_Hot_Dog -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chili_Cheese_Hot_Dog">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hot_Dog"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chilli_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chilli_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Choco_Brownie_Treatzza_Pizza -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Choco_Brownie_Treatzza_Pizza">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Choco_Brownie_Xtreme_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Choco_Brownie_Xtreme_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Cake_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Cake_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Chip_Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Chip_Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cookie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Chunk_Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Chunk_Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cookie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Dipped_Cone -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Dipped_Cone">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cone"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Frosty_Cookie_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Frosty_Cookie_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Malt -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Malt">
+        <owl:equivalentClass rdf:resource="http://sbmi.uth.edu/ontology/offf#Chocolate_Shake"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Milk -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Milk">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Milk"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chocolate_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chocolate_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cholesterol_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cholesterol_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Chow_Mein -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Chow_Mein">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Noodle_Dish"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fried_Noodles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cinnamon_Roll -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cinnamon_Roll">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Citric_Acid_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Citric_Acid_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Citrus_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Citrus_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Clam_Strips -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Clam_Strips">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Classic_Bacon_Egg_and_Cheese_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Classic_Bacon_Egg_and_Cheese_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Classic_Sausage_Egg_and_Cheese_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Classic_Sausage_Egg_and_Cheese_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Club_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Club_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Carbonated_Water"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cobb_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cobb_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cocoa_Cola_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cocoa_Cola_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Dark_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Coke_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Coke_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Dark_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cold_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cold_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cone -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cone">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cone_Kids_Dairy_Queen -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cone_Kids_Dairy_Queen">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cone"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cookie_Dough_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cookie_Dough_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cotton_Candy_Dipped_Cone -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cotton_Candy_Dipped_Cone">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cone"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cream_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cream_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cream_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cream_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_BLT -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_BLT">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Nuggets -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Nuggets">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Nuggets"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Crispy_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Croissant_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Croissant_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Crunch_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Crunch_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hard_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Crunchy_Taco_Supreme -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Crunchy_Taco_Supreme">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Crunch_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Cucumbers_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Cucumbers_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Culture_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Culture_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dairy_Queen_Signature_All_Ocassion_Round_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dairy_Queen_Signature_All_Ocassion_Round_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dairy_Queen_Signature_All_Ocassion_Sheet_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dairy_Queen_Signature_All_Ocassion_Sheet_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dark_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dark_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Decaffeinated_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Decaffeinated_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dextrose_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dextrose_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Diet_Coke_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Diet_Coke_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coke_Soft_Drink"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Diet_Quality -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Diet_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Diet_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dietary_Fibre_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dietary_Fibre_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Carbohydrates_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dilly_Bar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dilly_Bar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Bar"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dipped_Strawberry_Cake_Cupfection -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dipped_Strawberry_Cake_Cupfection">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Royal_Treats"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Donut -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Donut">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Double_Patty_Cheese_Burger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Double_Patty_Cheese_Burger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Double_Patty_Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Double_Patty_Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Double_Quarter_Pounder_with_Cheese -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Double_Quarter_Pounder_with_Cheese">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dr_Pepper_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dr_Pepper_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Dr_Pepper_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Dr_Pepper_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Dark_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Egg_McMuffin -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Egg_McMuffin">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McMuffin"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Egg_and_Cheese_Biscuit -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Egg_and_Cheese_Biscuit">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Enzymes_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Enzymes_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Excess_Fat -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Excess_Fat">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Excess_Sodium -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Excess_Sodium">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Excess_Sugar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Excess_Sugar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Excess_Trans_Fat -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Excess_Trans_Fat">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Diet_Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#lowers"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#HDL_Levels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#raises"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#LDL_Levels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fanta_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fanta_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Asian_Dish">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Restaurant -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Restaurant"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fat_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fat_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fish_Fries -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fish_Fries">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fries"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fish_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fish_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Flour_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Flour_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Food -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Food"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Food_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fortune_Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fortune_Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cookie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Frappe -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Frappe">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cold_Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#French_Vanilla_Cappuccino -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#French_Vanilla_Cappuccino">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cappuccino"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#French_Vanilla_Latte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#French_Vanilla_Latte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fried_Cheese -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fried_Cheese">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fries"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fried_Noodles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fried_Noodles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Noodles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fried_Rice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fried_Rice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Rice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fries -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fries">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Frosted_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Frosted_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Frosted_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Frosted_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_Cup -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_Cup">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_Juice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_Juice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+        <skos:altLabel>Fruit Drink</skos:altLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_Punch_Slushie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_Punch_Slushie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Slushie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_Punch_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_Punch_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fruit_and_Maple_Oatmeal -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fruit_and_Maple_Oatmeal">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Oats_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Fudge_Stuffed_Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Fudge_Stuffed_Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cookie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Garden_Herb_Ranch -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Garden_Herb_Ranch">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ranch"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Garden_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Garden_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ginger_Ale -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ginger_Ale">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Light_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Green_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Green_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Asiago_Ranch_Club -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Asiago_Ranch_Club">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Avocado_BLT_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Avocado_BLT_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Bacon_Jalapeno_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Bacon_Jalapeno_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Barbecue_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Barbecue_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Grilled_Steak_Soft_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Grilled_Steak_Soft_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Gum_Arabic_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Gum_Arabic_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#HDL_Levels -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#HDL_Levels">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Raised_Cholesterol_Levels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hamburger_with_Bacon -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hamburger_with_Bacon">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hard_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hard_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hash_Brown_Sticks -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hash_Brown_Sticks">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hash_Browns"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hash_Browns -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hash_Browns">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Health_Outcomes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Heart_Disease -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Heart_Disease">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Fat"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Trans_Fat"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Heath_Treatzza_Pizza -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Heath_Treatzza_Pizza">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#High_Fructose_Corn_Syrup_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#High_Fructose_Corn_Syrup_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Homestyle_Asiago_Ranch_Chicken_Club -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Homestyle_Asiago_Ranch_Chicken_Club">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Homestyle_Avocado_BLT_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Homestyle_Avocado_BLT_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Homestyle_Bacon_Jalapeno_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Homestyle_Bacon_Jalapeno_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Homestyle_Barbeque_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Homestyle_Barbeque_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Homestyle_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Homestyle_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Honey_BBQ_Glazed_Chicken_Strip_Basket -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Honey_BBQ_Glazed_Chicken_Strip_Basket">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Strip_Basket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Honey_BBQ_Glazed_Chicken_Strip_Basket_Combo -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Honey_BBQ_Glazed_Chicken_Strip_Basket_Combo">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Honey_BBQ_Glazed_Chicken_Strip_Basket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Honey_Mustard -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Honey_Mustard">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mustard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Chocolate -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Chocolate">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Desserts_a_la_Mode -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Desserts_a_la_Mode">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Dog -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Dog">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Fudge_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Fudge_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Fudge_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Fudge_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Mustard -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Mustard">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mustard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hot_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hot_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hotcakes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hotcakes">
+        <owl:equivalentClass rdf:resource="http://sbmi.uth.edu/ontology/offf#Pancakes"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+        <skos:altLabel>Pancakes</skos:altLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hotcakes_Breakfast -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hotcakes_Breakfast">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hotcakes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hotcakes_and_Sausages -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hotcakes_and_Sausages">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hotcakes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Hypertension -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Hypertension">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sodium"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ice_Cream -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ice_Cream">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ice_Cream_Bar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Bar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ice_Cream_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cake"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ice_Cream_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Macchiato -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Macchiato">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+                    <rdf:Description rdf:about="http://sbmi.uth.edu/ontology/offf#Macchiato"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Mocha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Caramel_Mocha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mocha"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cold_Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_French_Vanilla_Coffee -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_French_Vanilla_Coffee">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_French_Vanilla_Latte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_French_Vanilla_Latte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Latte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Latte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Mocha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Mocha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Iced_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mocha"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iced_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iced_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Iron -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Iron">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Jalapeno_and_Cheese_Whataburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Jalapeno_and_Cheese_Whataburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Jr_Cheeseburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Jr_Cheeseburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Jr_Cheeseburger_Deluxe -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Jr_Cheeseburger_Deluxe">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Jr_Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Julius_Original -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Julius_Original">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+        <terms:description>beverage that is mixture of ice, fruit, sweetener, milk, powdered egg whites and vanilla flavoring, https://en.wikipedia.org/wiki/Orange_Julius</terms:description>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Kale_Crunch_Side -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Kale_Crunch_Side">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Kung_Pao_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Kung_Pao_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#LDL_Levels -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#LDL_Levels">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Raised_Cholesterol_Levels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Lactic_Acid_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Lactic_Acid_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Latte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Latte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Lemon_Pie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Lemon_Pie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Pie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Lemonade_Twisty_Misty_Slush -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Lemonade_Twisty_Misty_Slush">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Slushie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Lettuce_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Lettuce_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Light_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Light_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Drink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Macchiato -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Macchiato">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Macorni_and_Cheese -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Macorni_and_Cheese">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Maltodextrin_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Maltodextrin_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mango_Passion_Tea_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mango_Passion_Tea_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mango_Pineapple_Smoothie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mango_Pineapple_Smoothie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Smoothie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Maple_Bacon_Chicken_Croissant -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Maple_Bacon_Chicken_Croissant">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Croissant_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mayonnaise -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mayonnaise">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#McGriddles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#McGriddles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#McMuffin -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#McMuffin">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Milk -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Milk">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Milk_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Milk_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mineral_Water -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mineral_Water">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Water"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Minerals_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Minerals_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mini_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mini_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mix_by_Sprite_Tropic_Berry -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mix_by_Sprite_Tropic_Berry">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Light_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mocha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mocha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Coffee"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mocha_Frappe -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mocha_Frappe">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Frappe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mocha_MooLatte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mocha_MooLatte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cold_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mushroom_Swiss_Burger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mushroom_Swiss_Burger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mustard -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mustard">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Mustard_Seed_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Mustard_Seed_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Nacho_Cheese_Doritos_Loco_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Nacho_Cheese_Doritos_Loco_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Nacho_Cheese_Doritos_Locos_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Nacho_Cheese_Doritos_Locos_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Natural_Flavors -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Natural_Flavors">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Naturally_Occurring_Sugar_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Naturally_Occurring_Sugar_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sugar_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Non-Dairy_Dilly_Bar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Non-Dairy_Dilly_Bar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream_Bar"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Noodles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Noodles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#NutritionalFact -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#NutritionalFact">
+        <rdfs:comment>Concept that encapsulates nutritional information of foods ranging from allergens, ingredients, and nutrient info.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Nutritional_Components -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Nutritional_Components">
+        <rdfs:comment>Concept that covers value data for vitamins, calories, fats, etc contained in food items</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Oatmeal_Bar -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Oatmeal_Bar">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Obesity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Obesity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sugar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Onion_Rings -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Onion_Rings">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fries"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Onions_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Onions_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Orange_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Orange_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Orange_Juice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Orange_Juice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Juice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Orange_Julius_Original -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Orange_Julius_Original">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Julius_Original"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Orange_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Orange_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Oreo_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Oreo_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Oreo_Mini -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Oreo_Mini">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mini_Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Organic_Apple_Juice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Organic_Apple_Juice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Apple_Juice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Osteoporosis -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Osteoporosis">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sugar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Overweight -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Overweight">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Fat"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sugar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pancake_Platter_Whataburgers -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pancake_Platter_Whataburgers">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Platter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pancakes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pancakes">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Paprika_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Paprika_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Parmesan_Caesar_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Parmesan_Caesar_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Parmesan_Caesar_Chicken_Salad_Dressing -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Parmesan_Caesar_Chicken_Salad_Dressing">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Salad_Dressing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peach_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Peach_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Parfait -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Parfait">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Royal_Treats"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Peanut_Butter_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Peanut_Oil_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Peanut_Oil_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pepper_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pepper_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Dessert"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pineapple_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pineapple_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pink_Lemonade_Slushie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pink_Lemonade_Slushie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Slushie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Potassium -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Potassium">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Potassium_Sorbate_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Potassium_Sorbate_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Potatoe_Fries -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Potatoe_Fries">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fries"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Potatoes_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Potatoes_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pretzel -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pretzel">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Pretzel_Sticks_with_Zesty_Queso -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Pretzel_Sticks_with_Zesty_Queso">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Pretzel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Protein_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Protein_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Quarter_Pound_Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Quarter_Pound_Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Raised_Cholesterol_Levels -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Raised_Cholesterol_Levels">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Ranch -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Ranch">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Raspberry_Fudge_Bliss_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Raspberry_Fudge_Bliss_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Raspberry_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Raspberry_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Reese_Peanut_Butter_Cup_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Reese_Peanut_Butter_Cup_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Rice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Rice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Root_Beer -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Root_Beer">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Dark_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Royal_Treats -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Royal_Treats">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Salad_Dressing -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Salad_Dressing">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Salt_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Salt_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Saturated_Fat_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Saturated_Fat_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fat_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_Biscuit -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_Biscuit">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_Biscuit_with_Egg -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_Biscuit_with_Egg">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Biscuit_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Cheese_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Cheese_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Cheese_McGriddles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Cheese_McGriddles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McGriddles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Swiss_Croissant -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_Egg_and_Swiss_Croissant">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Croissant_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_McGriddles -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_McGriddles">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McGriddles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_McMuffin -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_McMuffin">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McMuffin"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sausage_McMuffin_with_Egg -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sausage_McMuffin_with_Egg">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#McMuffin"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Seasme_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Seasme_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Seasoned_Potatoes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Seasoned_Potatoes">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Seltzer_Water -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Seltzer_Water">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Carbonated_Water"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Serving_Size_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Serving_Size_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Shredded_Chicken_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Shredded_Chicken_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sichuan_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sichuan_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Side_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Side_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Silicon_Dioxide_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Silicon_Dioxide_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Slushie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Slushie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Smoothie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Smoothie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sodium -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sodium">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sodium_Citrate_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sodium_Citrate_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sodium_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sodium_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soft_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soft_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soft_Taco_Supreme_Beef_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soft_Taco_Supreme_Beef_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sorbic_Acid_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sorbic_Acid_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soup -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soup">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Southwest_Avocado_Chicken_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Southwest_Avocado_Chicken_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Southwest_Avocado_Chicken_Salad_Dressing -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Southwest_Avocado_Chicken_Salad_Dressing">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Salad_Dressing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soy_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soy_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Soybean_Oil_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Soybean_Oil_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Asiago_Ranch_Club -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Asiago_Ranch_Club">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Avocado_BLT_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Avocado_BLT_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Barbeque_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Barbeque_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Nugget -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Nugget">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Nuggets"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Chicken_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chicken_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Potato_Soft_Taco -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Potato_Soft_Taco">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Soft_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Spicy_Southwest_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Spicy_Southwest_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sports_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sports_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sprite_Soft_Drink -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sprite_Soft_Drink">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Light_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sriracha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sriracha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Chilli_Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Banana_Julius_Original -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Banana_Julius_Original">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Julius_Original"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Banana_Smoothie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Banana_Smoothie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Smoothie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Malt -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Malt">
+        <owl:equivalentClass rdf:resource="http://sbmi.uth.edu/ontology/offf#Strawberry_Shake"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Milk -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Milk">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Milk"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Soda -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Soda">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fruit_Soda"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Strawberry_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Strawberry_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sugar_Cookie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sugar_Cookie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cookie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sugar_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sugar_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Carbohydrates_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sugar_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sugar_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Summer_Strawberry -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Summer_Strawberry">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Summer_Strawberry_Salad_Dressing -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Summer_Strawberry_Salad_Dressing">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Salad_Dressing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Ice_Cream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sunflower_Lecithin_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sunflower_Lecithin_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sunflower_Oil_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sunflower_Oil_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sweet_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sweet_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sweet_and_Sour_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sweet_and_Sour_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Sweet_and_Spicy_Sriracha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Sweet_and_Spicy_Sriracha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sriracha"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Taco_Salad -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Taco_Salad">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Salad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Taquito_with_Cheese -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Taquito_with_Cheese">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Taco"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tartar_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tartar_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Teriyaki_Chicken -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Teriyaki_Chicken">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Asian_Chicken_Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Teriyaki_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Teriyaki_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Third_Pound_Double_Patty_Cheeseburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Third_Pound_Double_Patty_Cheeseburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cheeseburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Third_Pound_Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Third_Pound_Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tiramisu_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tiramisu_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tomato_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tomato_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tomato_Sauce -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tomato_Sauce">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Condiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tooth_Decay -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tooth_Decay">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sugar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Trans_Fat_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Trans_Fat_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fat_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Triple_Chocolate_Brownie -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Triple_Chocolate_Brownie">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Brownie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Triple_Patty_Hamburger -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Triple_Patty_Hamburger">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Hamburger"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tropical_Berry_Lemonade -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tropical_Berry_Lemonade">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Lemonade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Tumeric_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Tumeric_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Turkey_BLT_Sandwich -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Turkey_BLT_Sandwich">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Bacon_Lettuce_and_Tomato_Sandwich"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Type_II_Diabetes -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Type_II_Diabetes">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Excess_Sugar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Unsaturated_Fat_Data -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Unsaturated_Fat_Data">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fat_Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Unsweetened_Tea -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Unsweetened_Tea">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vanilla_Frosty_Cookie_Sundae -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vanilla_Frosty_Cookie_Sundae">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Sundae"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vanilla_MooLatte -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vanilla_MooLatte">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Cold_Coffee"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Latte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vanilla_Shake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vanilla_Shake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Shake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vegetarian_Burrito -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vegetarian_Burrito">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Burrito"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vinegar_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vinegar_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vitamin_A -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vitamin_A">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vitamin_C -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vitamin_C">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Vitamin_D -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Vitamin_D">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Nutritional_Components"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Waffle -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Waffle">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Breakfast_Item"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Waffle_Potato_Chips -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Waffle_Potato_Chips">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Sides"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Water -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Water">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Beverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Water_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Water_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#White_Castle -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#White_Castle">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Fast_Food_Restaurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#White_Rice -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#White_Rice">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Rice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Wonder_Woman_Cookie_Collision_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Wonder_Woman_Cookie_Collision_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Yeast_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Yeast_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#disodium_dihydrogen_pyrophosphate_Ingredient -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#disodium_dihydrogen_pyrophosphate_Ingredient">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Food_Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Big_Breakfast_McDonald&apos;s -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Big_Breakfast_McDonald&apos;s">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Breakfast_Platter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#M&amp;M_DQ_Treatzza_Pizza -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#M&amp;M_DQ_Treatzza_Pizza">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Reese&apos;s_Mini_Blizzard_Cake -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Reese&apos;s_Mini_Blizzard_Cake">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Mini_Blizzard_Cake"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/offf#Reese&apos;s_Peanut_Butter_Cups_DQ_Treatzza_Pizza -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/offf#Reese&apos;s_Peanut_Butter_Cups_DQ_Treatzza_Pizza">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#DQ_Treatzza_Pizza"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R7SaaZmZ1CxcAbissFCRtPo">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:label xml:lang="en">Inflammation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9GnlAfO0JVs2OWZy5jCvla -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R9GnlAfO0JVs2OWZy5jCvla">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Peanuts</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RB2gYHreDhFsuApPhfUHb8n -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RB2gYHreDhFsuApPhfUHb8n">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Fish</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBwebwNRBmppN88y7NNox1t -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RBwebwNRBmppN88y7NNox1t">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Soy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBx4jqyAeRnmZLwcIUlHW8a -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RBx4jqyAeRnmZLwcIUlHW8a">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Health_Outcomes"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/offf#Milk"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R9GnlAfO0JVs2OWZy5jCvla"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RB2gYHreDhFsuApPhfUHb8n"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RBwebwNRBmppN88y7NNox1t"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RC0XgN2bARnTMEaziviOwfL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RClyQIb7N1O6LPvDXLOyxJI"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCxHtqH6PFeNHsLWv2vUZho"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RDMXSUQW0pX0e9iO3875t0h"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RmWbppQQp0aKxYfxH8V1gO"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://sbmi.uth.edu/ontology/offf#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RvYMZgqKXctztU08BRyOsZ"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Allergy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RC0XgN2bARnTMEaziviOwfL -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RC0XgN2bARnTMEaziviOwfL">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Sesame</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RClyQIb7N1O6LPvDXLOyxJI -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RClyQIb7N1O6LPvDXLOyxJI">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Celery</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCxHtqH6PFeNHsLWv2vUZho -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RCxHtqH6PFeNHsLWv2vUZho">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Shellfish</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDMXSUQW0pX0e9iO3875t0h -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RDMXSUQW0pX0e9iO3875t0h">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Tree Nuts</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RmWbppQQp0aKxYfxH8V1gO -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RmWbppQQp0aKxYfxH8V1gO">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Egg</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RvYMZgqKXctztU08BRyOsZ -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RvYMZgqKXctztU08BRyOsZ">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/offf#Allergens"/>
+        <rdfs:label xml:lang="en">Wheat</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9EKOnWoSR08Bk0OrtELwcn -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9EKOnWoSR08Bk0OrtELwcn">
+        <rdf:type rdf:resource="http://sbmi.uth.edu/ontology/offf#Fish_Sandwich"/>
+        <webprotege:R91higWoJGgSJak9NJWmQFE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peanut Oil</webprotege:R91higWoJGgSJak9NJWmQFE>
+        <webprotege:RCafAE1Hf18yOqVHD4duLF2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</webprotege:RCafAE1Hf18yOqVHD4duLF2>
+        <rdfs:label xml:lang="en">My fish sandwich</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi -->
+
