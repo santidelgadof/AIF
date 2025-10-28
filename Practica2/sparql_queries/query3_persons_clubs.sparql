@@ -22,34 +22,3 @@ WHERE {
 GROUP BY ?person ?name
 ORDER BY ASC(?numberOfClubs)
 LIMIT 7
-
-# EXPLICACIÓN:
-# - SELECT ?person ?name (COUNT(?club) as ?numberOfClubs): 
-#   Selecciona personas, nombres y cuenta el número de clubes
-# - ?person a dbo:Person: Filtra solo entidades de tipo Person
-# - ?person rdfs:label ?name: Obtiene el nombre de la persona
-# - OPTIONAL { ?person dbo:team ?club . }: Obtiene clubes asociados (opcional)
-# - { ?person dbo:height ?height . FILTER (?height >= 2.10) }: Altura >= 2.10m
-#   UNION
-#   { ?person dbo:weight ?weight . FILTER (?weight >= 95000) }: Peso >= 95kg
-#   (Nota: el peso en DBpedia suele estar en gramos, por eso 95000g = 95kg)
-# - GROUP BY ?person ?name: Agrupa resultados por persona
-# - ORDER BY ASC(?numberOfClubs): Ordena por número de clubes ascendente
-# - LIMIT 7: Limita los resultados a las primeras 7 personas
-
-# NOTA IMPORTANTE:
-# - Las alturas en DBpedia están en metros (2.10 = 2.10m)
-# - Los pesos en DBpedia suelen estar en gramos (95000g = 95kg)
-# - Si no hay resultados, verifica las unidades usadas en DBpedia
-
-# ALTERNATIVA (si la query anterior no funciona):
-# Puedes probar con dbp:height y dbp:weight en lugar de dbo:height y dbo:weight
-# O ajustar los valores según las unidades encontradas en DBpedia
-
-# INSTRUCCIONES:
-# 1. Ir a https://dbpedia.org/snorql/
-# 2. Copiar y pegar la query (sin los comentarios #)
-# 3. Ejecutar la query
-# 4. Si no hay resultados, ajustar unidades o propiedades
-# 5. Capturar los resultados
-# 6. Explicar la lógica de la query en el informe
